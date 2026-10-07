@@ -1,18 +1,29 @@
+import { Navigate } from "react-router-dom";
 import MainLayout from "../layouts/MainLayout";
 import { AboutPage, HomePage } from "../pages";
+import LanguageWrapper from "./LanguageWrapper";
 
 export const router = [
   {
     path: "/",
-    element: <MainLayout />,
+    element: <Navigate to="/uz/" replace />,
+  },
+  {
+    path: ":lang",
+    element: <LanguageWrapper />,
     children: [
       {
-        index: true,
-        element: <HomePage />,
-      },
-      {
-        path: "about",
-        element: <AboutPage />,
+        element: <MainLayout />,
+        children: [
+          {
+            index: true,
+            element: <HomePage />,
+          },
+          {
+            path: "about",
+            element: <AboutPage />,
+          },
+        ],
       },
     ],
   },
