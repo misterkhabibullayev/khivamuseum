@@ -11,5 +11,11 @@
     "contact": "Contact",
     "aTickets": "Buy Tickets",
     "profile": "Profile"
+  },
+  "hero": {
+    "title1": "Ichan-Kala",
+    "text": "Khorezm region, Khiva city",
+    "title2": "Arda Khiva - Modern life in historical Khiva",
+    "title3": "Kalta Minor - The unfinished symbol of Khiva"
   }
 }

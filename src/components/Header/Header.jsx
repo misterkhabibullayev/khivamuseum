@@ -12,7 +12,7 @@ export default function Header() {
   const [isNewsOpen, setIsNewsOpen] = useState(false);
   return (
     <>
-      <header className="sticky top-0 left-0 bg-white dark:bg-dark-main">
+      <header className="sticky top-0 left-0 z-9999 bg-white dark:bg-dark-main">
         <div className="container1">
           <div className="flex items-center justify-between py-1 text-base">
             <div className="flex items-center gap-x-2 xl:gap-x-5">

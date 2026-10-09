@@ -11,6 +11,7 @@
 @theme {
   --color-dark-main: #202020;
   --color-dark-second: #2a2828;
+  --color-light-main: #fafafa;
   --color-light-second: #f5f5f7;
   --color-link-hover: #e19d3b;
   --font-montserrat: "Montserrat", sans-serif;
@@ -30,4 +31,8 @@
   max-width: 1320px;
   padding-inline: 20px;
   margin-inline: auto;
+}
+
+button {
+  cursor: pointer;
 }
