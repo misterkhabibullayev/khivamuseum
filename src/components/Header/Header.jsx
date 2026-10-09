@@ -2,7 +2,7 @@ import { Icons } from "../../icons/icons";
 import ThemeToggle from "./ThemeToggle";
 import { useTranslation } from "react-i18next";
 import LanguageDropdown from "./Language";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import CustomLink from "./CustomLink";
 
 export default function Header() {
@@ -10,9 +10,31 @@ export default function Header() {
 
   const [isAboutOpen, setIsAboutOpen] = useState(false);
   const [isNewsOpen, setIsNewsOpen] = useState(false);
+
+  const headerTopRef = useRef(null);
+  const [isSticky, setIsSticky] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (headerTopRef.current) {
+        const topHeaderHeight = headerTopRef.current.offsetHeight;
+        const shouldBeSticky = window.scrollY >= topHeaderHeight;
+
+        setIsSticky((prev) =>
+          prev !== shouldBeSticky ? shouldBeSticky : prev,
+        );
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
   return (
     <>
-      <header className="sticky top-0 left-0 z-9999 bg-white dark:bg-dark-main">
+      <header
+        ref={headerTopRef}
+        className={`fixed top-0 left-0 z-9999 w-full transition-all duration-300 ${isSticky ? "bg-white dark:bg-dark-main text-black dark:text-white" : "bg-white/10 backdrop-blur-xs text-white"}`}
+      >
         <div className="container1">
           <div className="flex items-center justify-between py-1 text-base">
             <div className="flex items-center gap-x-2 xl:gap-x-5">

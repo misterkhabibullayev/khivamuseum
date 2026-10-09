@@ -28,11 +28,24 @@
 
 .container1 {
   width: 100%;
-  max-width: 1320px;
+  max-width: 1400px;
   padding-inline: 20px;
   margin-inline: auto;
 }
 
 button {
   cursor: pointer;
+}
+
+.custom-pagination .hero-bullet {
+  display: inline-block !important;
+  width: 20px !important;
+  height: 20px !important;
+  background-color: var(--color-link-hover);
+  border-radius: 100px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.custom-pagination .hero-bullet-active {
+  width: 60px !important;
 }

@@ -7,7 +7,7 @@ export default function MainLayout() {
     <>
       <div>
         <Header />
-        <main className="bg-light-second dark:bg-dark-second transition-all duration-300 min-h-200">
+        <main className="bg-light-second dark:bg-dark-second transition-all duration-300 min-h-400">
           <Outlet />
         </main>
         <Footer />
