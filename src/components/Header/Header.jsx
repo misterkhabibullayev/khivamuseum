@@ -92,7 +92,10 @@ export default function Header() {
                   <LanguageDropdown />
                 </div>
                 <div>
-                  <ThemeToggle />
+                  <ThemeToggle
+                    isSticky={isSticky}
+                    headerTopRef={headerTopRef}
+                  />
                 </div>
               </div>
             </div>

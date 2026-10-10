@@ -35,13 +35,11 @@ export default function AboutSection() {
             </div>
           </div>
         </div>
-        <div className="w-full md:w-1/2 flex items-center md:rounded-l-full overflow-hidden">
-          <img
-            src="/Images/khiva1.jpg"
-            alt=""
-            className="w-full h-full object-cover"
-          />
-        </div>
+        <img
+          src="/Images/khiva1.jpg"
+          alt=""
+          className="shrink-0 w-full lg:w-1/2 lg:max-w-212.5 h-auto xl:h-125 md:rounded-l-full"
+        />
       </section>
     </>
   );

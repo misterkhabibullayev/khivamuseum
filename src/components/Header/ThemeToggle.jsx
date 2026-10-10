@@ -1,16 +1,23 @@
 import { Icons } from "../../icons/icons";
 import { useThemeStore } from "../../store/useThemeStore";
 
-function ThemeToggle() {
+function ThemeToggle({ isSticky, headerTopRef }) {
   const { theme, toggleTheme } = useThemeStore();
 
   return (
     <div className="flex items-center transition-all duration-300">
       <button
+        ref={headerTopRef}
         onClick={toggleTheme}
         aria-label="Toggle theme"
-        className={`relative flex items-center w-12 h-6 rounded-full p-0.5 cursor-pointer transition-colors duration-300 ${
-          theme === "dark" ? "bg-dark-second" : "bg-link-hover"
+        className={`relative flex items-center w-12 h-6 rounded-full p-0.5 cursor-pointer transition-colors duration-300 backdrop-blur-xs ${
+          theme === "dark"
+            ? isSticky
+              ? "bg-white/10"
+              : "bg-white/10"
+            : isSticky
+              ? "bg-black/10"
+              : ""
         }`}
       >
         <div
