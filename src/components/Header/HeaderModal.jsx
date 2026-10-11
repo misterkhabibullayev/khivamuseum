@@ -33,7 +33,14 @@ export default function HeaderModal({ isModal, closeModal }) {
           </div>
         </div>
         <div className="flex-1 overflow-y-auto">
-          <nav className="flex flex-col gap-7 py-2">
+          <nav
+            onClick={(e) => {
+              if (e.target.closest("a") || e.target.closest("button")) {
+                closeModal();
+              }
+            }}
+            className="flex flex-col gap-7 py-2"
+          >
             <CustomLink
               to={"/"}
               className="font-bold text-sm uppercase leading-[110%] group relative"
