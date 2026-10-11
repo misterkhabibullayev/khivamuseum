@@ -1,7 +1,7 @@
 import { Icons } from "../../icons/icons";
 import { useThemeStore } from "../../store/useThemeStore";
 
-function ThemeToggle({ isSticky, headerTopRef }) {
+function ThemeToggle({ isSticky, headerTopRef, isModal }) {
   const { theme, toggleTheme } = useThemeStore();
 
   return (
@@ -18,7 +18,7 @@ function ThemeToggle({ isSticky, headerTopRef }) {
             : isSticky
               ? "bg-black/10"
               : ""
-        }`}
+        } ${isModal ? "bg-black/10" : ""}`}
       >
         <div
           className={`flex items-center justify-center w-5 h-5 bg-white rounded-full shadow-md transform transition-transform duration-300 ease-in-out ${

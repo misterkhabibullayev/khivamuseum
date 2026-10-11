@@ -4,9 +4,12 @@ import { useTranslation } from "react-i18next";
 import LanguageDropdown from "./Language";
 import { useEffect, useRef, useState } from "react";
 import CustomLink from "./CustomLink";
+import HeaderModal from "./HeaderModal";
 
 export default function Header() {
   const { t } = useTranslation();
+  const [isModal, setIsModal] = useState(false);
+  const closeModal = () => setIsModal(false);
 
   const [isAboutOpen, setIsAboutOpen] = useState(false);
   const [isNewsOpen, setIsNewsOpen] = useState(false);
@@ -33,12 +36,12 @@ export default function Header() {
     <>
       <header
         ref={headerTopRef}
-        className={`fixed top-0 left-0 z-9999 w-full transition-all duration-300 ${isSticky ? "bg-white dark:bg-dark-main text-black dark:text-white" : "bg-white/10 backdrop-blur-xs text-white"}`}
+        className={`fixed top-0 left-0 z-1000 w-full transition-all duration-300 ${isSticky ? "bg-white dark:bg-dark-main text-black dark:text-white" : "bg-white/10 backdrop-blur-xs text-white"}`}
       >
-        <div className="container1">
+        <div className="container1 py-3 lg:py-0">
           <div className="flex items-center justify-between py-1 text-base">
             <div className="flex items-center gap-x-2 xl:gap-x-5">
-              <div>
+              <div className="hidden lg:flex">
                 <CustomLink
                   to={"https://khiva360.nazzar.uz/"}
                   target="_blank"
@@ -48,7 +51,7 @@ export default function Header() {
                   <span>Khiva 360°</span>
                 </CustomLink>
               </div>
-              <div>
+              <div className="hidden lg:flex">
                 <CustomLink
                   to={"https://khivamuseumshop.uz/main/home"}
                   target="_blank"
@@ -60,7 +63,7 @@ export default function Header() {
               </div>
             </div>
             <div className="flex items-center gap-3">
-              <div className="flex items-center">
+              <div className="items-center hidden md:flex">
                 <CustomLink
                   to={"https://www.youtube.com/@khivamuseaum.2025"}
                   className="inline-block px-2 py-0.5"
@@ -84,25 +87,33 @@ export default function Header() {
                   className="flex items-center px-2 py-0.5 gap-1"
                 >
                   <Icons.phoneIcon />
-                  <span>+998556046343</span>
+                  <span className="hidden lg:flex">+998556046343</span>
                 </CustomLink>
               </div>
               <div className="flex items-center gap-3">
                 <div>
                   <LanguageDropdown />
                 </div>
-                <div>
+                <div className={`${isSticky ? "flex" : "hidden"}`}>
                   <ThemeToggle
                     isSticky={isSticky}
                     headerTopRef={headerTopRef}
                   />
                 </div>
               </div>
+              <div className="pl-2 flex lg:hidden">
+                <button
+                  onClick={() => setIsModal(true)}
+                  className="flex items-center"
+                >
+                  <Icons.burgerIcon />
+                </button>
+              </div>
             </div>
           </div>
         </div>
-        <div className="h-px bg-link-hover"></div>
-        <div className="container1 py-2">
+        <div className="h-px bg-link-hover hidden lg:flex"></div>
+        <div className="container1 py-2 hidden lg:block">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-x-7">
               <div>
@@ -237,6 +248,20 @@ export default function Header() {
           </div>
         </div>
       </header>
+      <div
+        onClick={closeModal}
+        className={`w-full h-full fixed inset-0 z-1000 bg-black/30 isModal transition-opacity duration-300
+          ${
+            isModal
+              ? "opacity-100 pointer-events-auto"
+              : "opacity-0 pointer-events-none"
+          }`}
+      >
+        <HeaderModal
+          isModal={isModal}
+          closeModal={closeModal}
+        />
+      </div>
     </>
   );
 }

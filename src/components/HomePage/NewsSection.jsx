@@ -33,7 +33,7 @@ export default function NewsSection() {
             <Icons.rightIcon />
           </CustomLink>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-11 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-11 sm:grid-rows-3 gap-6">
           {news.slice(0, 4).map((item, index) => {
             const mainImgObj = item.images?.find(
               (img) => img.mainImage === true,
@@ -42,7 +42,7 @@ export default function NewsSection() {
             return (
               <div
                 key={item.id}
-                className={`rounded-xl border border-link-hover bg-white dark:bg-dark-main h-full ${index === 0 ? "col-span-1 sm:col-span-6" : ""}`}
+                className={`rounded-xl border border-link-hover bg-white dark:bg-dark-main h-full ${index === 0 ? "col-span-1 sm:col-span-6 row-span-1 sm:row-span-3" : ""}`}
               >
                 <div className="w-full h-full">
                   <CustomLink
