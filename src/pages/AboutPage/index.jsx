@@ -1,7 +1,56 @@
+import { useTranslation } from "react-i18next";
+import CustomLink from "../../components/Header/CustomLink";
+import { Icons } from "../../icons/icons";
+import Breadcrumbs from "../../components/BreadCrumbs";
+
 export default function AboutPage() {
+  const { t } = useTranslation();
   return (
     <>
-      <div>AboutPage</div>
+      <div className="">
+        <div className="container1 py-4">
+          <Breadcrumbs />
+        </div>
+        <div className="pb-30">
+          <section className=" flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-20 overflow-x-hidden">
+            <div className="w-full lg:w-1/2 px-5 lg:pl-[8%]">
+              <div>
+                <h1 className="font-bold text-2xl md:text-3xl leading-[110%] text-black dark:text-white">
+                  {t("about.title")}
+                </h1>
+                <p className="font-medium text-base md:text-lg leading-[130%] text-black dark:text-white my-8 md:my-10">
+                  {t("about.text")}
+                </p>
+                <div className="flex items-center gap-5">
+                  <CustomLink
+                    to={"/tickets"}
+                    className="flex items-center gap-1 font-bold text-sm leading-[110%] w-auto px-5 h-8.5 rounded-full bg-link-hover hover:bg-link-hover/80 transition-colors duration-300 text-white"
+                  >
+                    {t("header.aTickets")}
+                    <span>
+                      <Icons.ticketIcon />
+                    </span>
+                  </CustomLink>
+                  <CustomLink
+                    to="about"
+                    className="flex items-center gap-1 px-5 h-8.5 rounded-full border border-link-hover hover:bg-link-hover text-sm md:text-base font-medium leading-[130%] hover:text-white transition-colors duration-300"
+                  >
+                    {t("more")}
+                    <Icons.rightIcon />
+                  </CustomLink>
+                </div>
+              </div>
+            </div>
+            <div className="shrink-0 w-full lg:w-1/2 lg:max-w-212.5 h-90 xl:h-125 lg:rounded-l-full overflow-hidden">
+              <img
+                src="/Images/khiva1.jpg"
+                alt=""
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </section>
+        </div>
+      </div>
     </>
-  )
+  );
 }

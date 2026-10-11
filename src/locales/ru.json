@@ -1,4 +1,9 @@
 {
+  "breadCrumbs": {
+    "main": "Главная",
+    "about": "О нас",
+    "collections": "Коллекция музея"
+  },
   "more": "Подробнее",
   "loading": "Загрузка...",
   "header": {

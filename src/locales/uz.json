@@ -1,4 +1,9 @@
 {
+  "breadCrumbs": {
+    "main": "Bosh sahifa",
+    "about": "Biz haqimizda",
+    "collections": "Muzey Kolleksiyasi"
+  },
   "more": "Batafsil",
   "loading": "Yuklanmoqda...",
   "header": {

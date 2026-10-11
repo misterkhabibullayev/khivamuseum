@@ -5,17 +5,30 @@ import LanguageDropdown from "./Language";
 import { useEffect, useRef, useState } from "react";
 import CustomLink from "./CustomLink";
 import HeaderModal from "./HeaderModal";
+import { useLocation } from "react-router-dom";
 
 export default function Header() {
   const { t } = useTranslation();
   const [isModal, setIsModal] = useState(false);
   const closeModal = () => setIsModal(false);
+  const location = useLocation();
 
   const [isAboutOpen, setIsAboutOpen] = useState(false);
   const [isNewsOpen, setIsNewsOpen] = useState(false);
 
   const headerTopRef = useRef(null);
   const [isSticky, setIsSticky] = useState(false);
+
+  const isHomePage =
+    location.pathname === "/" ||
+    location.pathname === "/uz" ||
+    location.pathname === "/ru" ||
+    location.pathname === "/en" ||
+    location.pathname === "/uz/" ||
+    location.pathname === "/ru/" ||
+    location.pathname === "/en/";
+
+  const isSolidBg = isSticky || !isHomePage;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -36,7 +49,7 @@ export default function Header() {
     <>
       <header
         ref={headerTopRef}
-        className={`fixed top-0 left-0 z-1000 w-full transition-all duration-300 ${isSticky ? "bg-white dark:bg-dark-main text-black dark:text-white" : "bg-white/10 backdrop-blur-xs text-white"}`}
+        className={` top-0 left-0 z-1000 w-full transition-all duration-300 ${isSolidBg ? "sticky bg-white dark:bg-dark-main text-black dark:text-white" : "fixed bg-white/10 backdrop-blur-xs text-white"}`}
       >
         <div className="container1 py-3 lg:py-0">
           <div className="flex items-center justify-between py-1 text-base">
@@ -94,7 +107,7 @@ export default function Header() {
                 <div>
                   <LanguageDropdown />
                 </div>
-                <div className={`${isSticky ? "flex" : "hidden"}`}>
+                <div className={`${isSolidBg ? "flex" : "hidden"}`}>
                   <ThemeToggle
                     isSticky={isSticky}
                     headerTopRef={headerTopRef}
@@ -257,10 +270,7 @@ export default function Header() {
               : "opacity-0 pointer-events-none"
           }`}
       >
-        <HeaderModal
-          isModal={isModal}
-          closeModal={closeModal}
-        />
+        <HeaderModal isModal={isModal} closeModal={closeModal} />
       </div>
     </>
   );

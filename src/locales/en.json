@@ -1,4 +1,9 @@
 {
+  "breadCrumbs": {
+    "main": "Home",
+    "about": "About Us",
+    "collections": "Museum Collection"
+  },
   "more": "Learn more",
   "loading": "Loading...",
   "header": {

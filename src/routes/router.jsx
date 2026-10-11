@@ -1,6 +1,11 @@
 import { Navigate } from "react-router-dom";
 import MainLayout from "../layouts/MainLayout";
-import { AboutPage, HomePage } from "../pages";
+import {
+  AboutPage,
+  CollectionDetailesPage,
+  CollectionsPage,
+  HomePage,
+} from "../pages";
 import LanguageWrapper from "./LanguageWrapper";
 
 export const router = [
@@ -22,6 +27,14 @@ export const router = [
           {
             path: "about",
             element: <AboutPage />,
+          },
+          {
+            path: "collections",
+            element: <CollectionsPage />,
+          },
+          {
+            path: "collections/:coldetailes",
+            element: <CollectionDetailesPage />,
           },
         ],
       },
