@@ -139,7 +139,7 @@ export default function Footer() {
         </div>
       </div>
       <div className="w-full h-px bg-white"></div>
-      <div className="flex flex-col sm:flex-row items-center justify-center py-6 gap-2 font-medium text-lg text-white">
+      <div className="flex flex-col sm:flex-row items-center justify-center py-6 gap-2 font-medium text-sm md:text-lg text-white">
         <p>
           &copy; {new Date().getFullYear()} {t("footer.copyRight")}
         </p>

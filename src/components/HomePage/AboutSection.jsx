@@ -6,8 +6,8 @@ export default function AboutSection() {
   const { t } = useTranslation();
   return (
     <>
-      <section className="py-30 flex flex-col md:flex-row items-center justify-between gap-10 md:gap-20 overflow-x-hidden">
-        <div className="w-full md:w-1/2 px-5 md:pl-[8%]">
+      <section className="py-30 flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-20 overflow-x-hidden">
+        <div className="w-full lg:w-1/2 px-5 lg:pl-[8%]">
           <div>
             <h1 className="font-bold text-2xl md:text-3xl leading-[110%] text-black dark:text-white">
               {t("about.title")}
@@ -35,11 +35,13 @@ export default function AboutSection() {
             </div>
           </div>
         </div>
-        <img
-          src="/Images/khiva1.jpg"
-          alt=""
-          className="shrink-0 w-full lg:w-1/2 lg:max-w-212.5 h-auto xl:h-125 md:rounded-l-full"
-        />
+        <div className="shrink-0 w-full lg:w-1/2 lg:max-w-212.5 h-90 xl:h-125 lg:rounded-l-full overflow-hidden">
+          <img
+            src="/Images/khiva1.jpg"
+            alt=""
+            className="w-full h-full object-cover"
+          />
+        </div>
       </section>
     </>
   );

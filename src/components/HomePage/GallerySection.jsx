@@ -1,8 +1,8 @@
 import { useTranslation } from "react-i18next";
 import CustomLink from "../Header/CustomLink";
 import { Icons } from "../../icons/icons";
-import { useGalleryStore } from "../../store/useGalleryStore";
 import { useEffect } from "react";
+import { useGalleryStore } from "../../store/useGalleryStore";
 
 export default function GallerySection() {
   const { t } = useTranslation();
@@ -12,8 +12,6 @@ export default function GallerySection() {
   useEffect(() => {
     getGallery();
   }, [getGallery]);
-
-  console.log(gallery);
 
   if (loading) return <p>{t("loading")}</p>;
   if (error) return <p>error</p>;

@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { useCollectionsSt } from "../../store/useCollectionsSt";
 import CustomLink from "../Header/CustomLink";
 import { Icons } from "../../icons/icons";
+import { useCollectionsSt } from "../../store/useCollectionsSt";
 
 export default function CollectionSection() {
   const { t, i18n } = useTranslation();
@@ -23,7 +23,7 @@ export default function CollectionSection() {
           <h1 className="font-medium text-2xl md:text-3xl mb-3 text-black dark:text-link-hover text-center">
             {t("collections.title")}
           </h1>
-          <p className="text-base md:text-lg text-center md:max-w-2/3">
+          <p className="text-base md:text-lg text-center lg:max-w-2/3">
             {t("collections.text")}
           </p>
         </div>

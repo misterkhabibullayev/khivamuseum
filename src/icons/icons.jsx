@@ -290,4 +290,47 @@ export const Icons = {
       />
     </svg>
   ),
+  dayIcon: (props) => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={17.5}
+      height={20}
+      viewBox="0 0 448 512"
+      {...props}
+    >
+      <path fill="none" d="M0 0h448v512H0z" />
+      <path
+        fill="currentColor"
+        d="M0 464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V192H0zm64-192c0-8.8 7.2-16 16-16h96c8.8 0 16 7.2 16 16v96c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16zM400 64h-48V16c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v48H160V16c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v48H48C21.5 64 0 85.5 0 112v48h448v-48c0-26.5-21.5-48-48-48"
+      />
+    </svg>
+  ),
+  viewIcon: (props) => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={20}
+      height={20}
+      viewBox="0 0 1024 1024"
+      {...props}
+    >
+      <path fill="none" d="M0 0h1024v1024H0z" />
+      <path
+        fill="currentColor"
+        d="M512 160c320 0 512 352 512 352S832 864 512 864 0 512 0 512s192-352 512-352m0 64c-225.3 0-384.1 208-436.8 288 52.6 79.9 211.5 288 436.8 288s384.1-208 436.8-288C896.2 432.1 737.3 224 512 224m0 64a224 224 0 1 1 0 448 224 224 0 0 1 0-448m0 64a160 160 0 0 0-160 160c0 88.2 71.7 160 160 160s160-71.8 160-160-71.7-160-160-160"
+      />
+    </svg>
+  ),
+  burgerIcon: (props) => (
+    <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} {...props}>
+      <path fill="none" d="M0 0h24v24H0z" />
+      <path
+        fill="none"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        d="M3 6.001h18m-18 6h18m-18 6h18"
+      />
+    </svg>
+  ),
 };
