@@ -120,14 +120,14 @@ export default function HeaderModal({ isModal, closeModal }) {
           <div className="grid grid-cols-2 gap-5 w-full">
             <CustomLink
               to="https://t.me/khivamuseum"
-              className="text-base text-gray-300 hover:text-white transition-all duration-300 flex items-center gap-2"
+              className="text-base text-black dark:text-white flex items-center gap-2"
             >
               <Icons.telegramIcon className="w-7 h-7" />
               Telegram
             </CustomLink>
             <CustomLink
               to="https://www.instagram.com/khivamuseum/"
-              className="text-base text-gray-300 hover:text-white transition-all duration-300 flex items-center gap-2"
+              className="text-base text-black dark:text-white flex items-center gap-2"
             >
               <Icons.footerInstaIcon className="w-7 h-7" />
               Instagram
