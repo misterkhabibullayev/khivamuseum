@@ -27,9 +27,9 @@ export default function AboutSection() {
               </CustomLink>
               <CustomLink
                 to="about"
-                className="flex items-center gap-1 px-5 h-8.5 rounded-full border border-link-hover hover:bg-link-hover hover:gap-2 transition-all duration-300 text-sm md:text-base font-medium leading-[130%]"
+                className="flex items-center gap-1 px-5 h-8.5 rounded-full border border-link-hover hover:bg-link-hover text-sm md:text-base font-medium leading-[130%] hover:text-white transition-colors duration-300"
               >
-                {t("about.more")}
+                {t("more")}
                 <Icons.rightIcon />
               </CustomLink>
             </div>

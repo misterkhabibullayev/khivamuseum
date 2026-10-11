@@ -1,4 +1,6 @@
 {
+  "more": "Batafsil",
+  "loading": "Yuklanmoqda...",
   "header": {
     "home": "Bosh sahifa",
     "aboutus": "Biz haqimizda",
@@ -20,7 +22,38 @@
   },
   "about": {
     "title": "Xiva davlat muzey qo'riqxonasi – 1970 yildan beri tarix merosi",
-    "text": "Xiva davlat muzey-qo‘riqxonasi (1970-yilda tashkil etilgan) — Xiva va uning atrofidagi boy tarixiy merosni asrash va targ‘ib qilishga xizmat qiluvchi yirik madaniy-ma’rifiy markazdir. \n\nMuzeyda Xivaning qadimiy san’ati, me’morchiligi va turmush tarzini aks ettiruvchi boy eksponatlar to‘plangan. U nafaqat tarixiy yodgorliklarni konservatsiya qilish va saqlash, balki ilmiy tadqiqotlar o‘tkazish hamda aholi va sayyohlarga mintaqa tarixini tanitishda muhim o‘rin tutadi.",
-    "more": "Batafsil"
+    "text": "Xiva davlat muzey-qo‘riqxonasi (1970-yilda tashkil etilgan) — Xiva va uning atrofidagi boy tarixiy merosni asrash va targ‘ib qilishga xizmat qiluvchi yirik madaniy-ma’rifiy markazdir. \n\nMuzeyda Xivaning qadimiy san’ati, me’morchiligi va turmush tarzini aks ettiruvchi boy eksponatlar to‘plangan. U nafaqat tarixiy yodgorliklarni konservatsiya qilish va saqlash, balki ilmiy tadqiqotlar o‘tkazish hamda aholi va sayyohlarga mintaqa tarixini tanitishda muhim o‘rin tutadi."
+  },
+  "stat": {
+    "title1": "1000+ yillik yodgorliklar",
+    "title2": "Xiva eksklyuziv yodgorliklari",
+    "title3": "Ipak yo‘li yodgorliklari",
+    "title4": "Tadqiqot loyihalari"
+  },
+  "collections": {
+    "title": "Xorazm madaniy merosi kolleksiyasi",
+    "text": "Xiva davlat muzey qo'riqxonasining boy to'plamida asrlar davomida saqlanib kelgan noyob eksponatlar namoyish etilmoqda. An'anaviy keramika, milliy kiyimlar va qadimiy qurol-yarog'lar orqali Xorazm xalqining tarixini va madaniyatini kashf eting."
+  },
+  "gallery": {
+    "title": "Galereya"
+  },
+  "news": {
+    "title": "Yangiliklar"
+  },
+  "footer": {
+    "logo": "Khiva \nMuseum",
+    "address": "Xorazm viloyati, Xiva, Boltaev ko'chasi, 41-uy",
+    "addressOpen": "Xaritada ochish",
+    "main": "Asosiy",
+    "mainLink": "Bosh sahifa",
+    "aboutUs": "Biz haqimizda",
+    "news": "Yangiliklar",
+    "museum": "Muzey",
+    "museumCollection": "Muzey kolleksiyasi",
+    "gallery": "Galereya",
+    "contact": "Aloqa",
+    "khiva360": "Khiva 360°",
+    "socialNetworks": "Ijtimoiy tarmoqlar",
+    "copyRight": "Barcha huquqlar himoyalangan"
   }
 }

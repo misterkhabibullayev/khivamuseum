@@ -1,4 +1,6 @@
 {
+  "more": "Learn more",
+  "loading": "Loading...",
   "header": {
     "home": "Home",
     "aboutus": "About Us",
@@ -20,7 +22,38 @@
   },
   "about": {
     "title": "Khiva State Museum-Reserve – Historical Heritage Since 1970",
-    "text": "Khiva State Museum-Reserve (established in 1970) is a major cultural and educational center dedicated to preserving and promoting the rich historical heritage of Khiva and its surroundings.\n\nThe museum houses a rich collection showcasing Khiva's ancient art, architecture, and traditional lifestyle. Beyond conserving and preserving historical monuments, it plays a key role in conducting scientific research and introducing the region's history to locals and tourists.",
-    "more": "Learn more"
+    "text": "Khiva State Museum-Reserve (established in 1970) is a major cultural and educational center dedicated to preserving and promoting the rich historical heritage of Khiva and its surroundings.\n\nThe museum houses a rich collection showcasing Khiva's ancient art, architecture, and traditional lifestyle. Beyond conserving and preserving historical monuments, it plays a key role in conducting scientific research and introducing the region's history to locals and tourists."
+  },
+  "stat": {
+    "title1": "1000+ Years of Heritage",
+    "title2": "Exclusive Khiva Monuments",
+    "title3": "Silk Road Landmarks",
+    "title4": "Research Projects"
+  },
+  "collections": {
+    "title": "Cultural Heritage Collection of Khorezm",
+    "text": "The rich collection of the Khiva State Museum-Reserve features unique artifacts preserved through the centuries. Discover the history and culture of the Khorezmian people through traditional ceramics, national attire, and ancient weaponry."
+  },
+  "gallery": {
+    "title": "Gallery"
+  },
+  "news": {
+    "title": "News"
+  },
+  "footer": {
+    "logo": "Khiva \nMuseum",
+    "address": "41 Boltaev Street, Khiva, Khorezm Region",
+    "addressOpen": "Open in Maps",
+    "main": "Main",
+    "mainLink": "Home",
+    "aboutUs": "About Us",
+    "news": "News",
+    "museum": "Museum",
+    "museumCollection": "Museum Collection",
+    "gallery": "Gallery",
+    "contact": "Contact",
+    "khiva360": "Khiva 360°",
+    "socialNetworks": "Social Networks",
+    "copyRight": "All rights reserved"
   }
 }

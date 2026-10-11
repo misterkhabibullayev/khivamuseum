@@ -1,5 +1,8 @@
 import AboutSection from "../../components/HomePage/AboutSection";
+import CollectionSection from "../../components/HomePage/CollectionSection";
+import GallerySection from "../../components/HomePage/GallerySection";
 import HeroSection from "../../components/HomePage/HeroSection";
+import StatistikSection from "../../components/HomePage/StatistikSection";
 
 export default function HomePage() {
   return (
@@ -7,7 +10,10 @@ export default function HomePage() {
       <div>
         <HeroSection />
         <AboutSection />
+        <StatistikSection />
+        <CollectionSection />
+        <GallerySection />
       </div>
     </>
-  )
+  );
 }
