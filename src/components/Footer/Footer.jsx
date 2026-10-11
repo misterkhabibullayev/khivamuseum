@@ -14,7 +14,7 @@ export default function Footer() {
             <div>
               <CustomLink to="/" className="flex items-center gap-2">
                 <img
-                  src="/public/Images/logo.png"
+                  src="/Images/logo.png"
                   alt="Khiva Museum Logo"
                   className="h-15"
                 />
