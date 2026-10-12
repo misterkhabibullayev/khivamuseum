@@ -30,7 +30,10 @@ export default function CollectionsDetPage() {
       <div className="container1">
         <Breadcrumbs />
       </div>
-      <div className="container1 flex flex-col md:flex-row gap-10 md:gap-20 pt-10 pb-20">
+      <div className="container1 pt-8 pb-10">
+        <h2 className="font-bold text-3xl md:text-4xl text-black dark:text-white">{collectionTitle}</h2>
+      </div>
+      <div className="container1 flex flex-col md:flex-row gap-10 md:gap-20 pb-20">
         <div
           dangerouslySetInnerHTML={{
             __html: currentCollection?.content?.[currentLang],
