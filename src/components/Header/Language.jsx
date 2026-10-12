@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { Icons } from "../../icons/icons";
@@ -14,6 +14,7 @@ export default function LanguageDropdown() {
   const { lang } = useParams();
   const location = useLocation();
   const navigate = useNavigate();
+  const dropdownRef = useRef(null);
 
   const [isLangOpen, setIsLangOpen] = useState(false);
 
@@ -35,13 +36,22 @@ export default function LanguageDropdown() {
     setIsLangOpen(false);
   };
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsLangOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
   return (
-    <div
-      className="relative"
-      onMouseEnter={() => setIsLangOpen(true)}
-      onMouseLeave={() => setIsLangOpen(false)}
-    >
-      <button className="cursor-pointer px-2 py-0.5">
+    <div className="relative">
+      <button
+        onClick={() => setIsLangOpen((prev) => !prev)}
+        className="cursor-pointer px-2 py-0.5"
+      >
         <div className="flex items-center gap-1">
           <div className="flex items-center gap-1">
             <span

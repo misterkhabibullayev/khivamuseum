@@ -1,11 +1,38 @@
 {
+  "more": "Batafsil",
+  "loading": "Yuklanmoqda...",
+  "meta": {
+    "home": "Xiva davlat muzey qo'riqxonasi - rasmiy veb-sayti",
+    "homeDes": "Xiva muzeyida Xivaning madaniy va tarixiy xazinalarini kashf eting.",
+    "about": "Biz haqimizda - KhivaMuseum",
+    "aboutDes": "",
+    "collections": "Muzey Kolleksiyasi - KhivaMuseum",
+    "collectionsDes": "",
+    "gallery": "Galereya - KhivaMuseum",
+    "galleryDes": "",
+    "employees": "Xodimlar - KhivaMuseum",
+    "employeesDes": "",
+    "news": "Yangiliklar - KhivaMuseum",
+    "newsDes": "",
+    "announcements": "E'lonlar - KhivaMuseum",
+    "announcementsDes": "",
+    "contact": "Aloqa - KhivaMuseum",
+    "contactDes": "",
+    "tickets": "Chipta sotib oling - KhivaMuseum",
+    "ticketsDes": "",
+    "login": "Kirish - KhivaMuseum",
+    "loginDes": "",
+    "register": "Ro'yxatda o'tish",
+    "registerDes": "",
+    "profil": "Shaxsiy kabinet",
+    "profilDes": ""
+  },
   "breadCrumbs": {
     "main": "Bosh sahifa",
     "about": "Biz haqimizda",
-    "collections": "Muzey Kolleksiyasi"
+    "collections": "Muzey Kolleksiyasi",
+    "gallery": "Galereya"
   },
-  "more": "Batafsil",
-  "loading": "Yuklanmoqda...",
   "header": {
     "home": "Bosh sahifa",
     "aboutus": "Biz haqimizda",

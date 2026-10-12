@@ -2,12 +2,17 @@ import { useTranslation } from "react-i18next";
 import CustomLink from "../../components/Header/CustomLink";
 import { Icons } from "../../icons/icons";
 import Breadcrumbs from "../../components/BreadCrumbs";
+import { Helmet } from "react-helmet-async";
 
 export default function AboutPage() {
   const { t } = useTranslation();
   return (
     <>
       <div className="">
+        <Helmet>
+          <title>{t("meta.about")}</title>
+          <meta name="description" content={t("meta.aboutDes")} />
+        </Helmet>
         <div className="container1 py-4">
           <Breadcrumbs />
         </div>

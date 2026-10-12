@@ -1,11 +1,12 @@
 {
+  "more": "Learn more",
+  "loading": "Loading...",
   "breadCrumbs": {
     "main": "Home",
     "about": "About Us",
-    "collections": "Museum Collection"
+    "collections": "Museum Collection",
+    "gallery": "Gallery"
   },
-  "more": "Learn more",
-  "loading": "Loading...",
   "header": {
     "home": "Home",
     "aboutus": "About Us",

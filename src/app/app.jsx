@@ -4,9 +4,16 @@ import { useRoutes } from "react-router-dom";
 
 export default function App() {
   const routes = useRoutes(router);
+
   return (
     <>
-      <Suspense fallback={<div>loading</div>}>{routes}</Suspense>
+      <Suspense
+        fallback={
+          <div className="fixed inset-0 bg-white w-full h-screen">loading</div>
+        }
+      >
+        {routes}
+      </Suspense>
     </>
   );
 }

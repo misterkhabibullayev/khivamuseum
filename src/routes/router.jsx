@@ -4,6 +4,7 @@ import {
   AboutPage,
   CollectionDetailesPage,
   CollectionsPage,
+  GalleryPage,
   HomePage,
 } from "../pages";
 import LanguageWrapper from "./LanguageWrapper";
@@ -35,6 +36,10 @@ export const router = [
           {
             path: "collections/:coldetailes",
             element: <CollectionDetailesPage />,
+          },
+          {
+            path: "gallery",
+            element: <GalleryPage />,
           },
         ],
       },
