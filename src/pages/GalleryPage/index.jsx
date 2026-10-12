@@ -7,6 +7,7 @@ import { useEffect } from "react";
 export default function GalleryPage() {
   const { t, i18n } = useTranslation();
   const currentLang = i18n.language || "uz";
+  console.log(currentLang);
 
   const { gallery, loading, error, getGallery } = useGalleryStore();
 
@@ -27,7 +28,9 @@ export default function GalleryPage() {
           <Breadcrumbs />
         </div>
         <div className="flex items-center justify-center pb-8">
-          <h2 className="font-bold text-3xl md:text-4xl">{t("breadCrumbs.gallery")}</h2>
+          <h2 className="font-bold text-3xl md:text-4xl">
+            {t("breadCrumbs.gallery")}
+          </h2>
         </div>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4">
           {gallery.map((item) => (
