@@ -6,7 +6,9 @@
     "about": "About Us",
     "collections": "Museum Collection",
     "gallery": "Gallery",
-    "news": "News"
+    "news": "News",
+    "announcements": "Announcements",
+    "employees": "Employees"
   },
   "header": {
     "home": "Home",

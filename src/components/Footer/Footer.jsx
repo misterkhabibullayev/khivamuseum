@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
-import CustomLink from "../Header/CustomLink";
-import { Icons } from "../../icons/icons";
 import { Link } from "react-router-dom";
+import { Icons } from "../../icons/icons";
+import CustomLink from "../Header/CustomLink";
 
 export default function Footer() {
   const { t } = useTranslation();
@@ -148,7 +148,7 @@ export default function Footer() {
           className="flex items-center gap-1"
         >
           Developed by
-          <span className="font-bold text-xl text-[#D4AF37]">LIMON.UZ</span>
+          <img src="/Images/limon.webp" alt="Limon Group logo image" className="h-12" />
         </Link>
       </div>
     </footer>

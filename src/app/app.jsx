@@ -1,19 +1,14 @@
 import { Suspense } from "react";
-import { router } from "../routes/router";
 import { useRoutes } from "react-router-dom";
+import MainLoading from "../components/MainLoding";
+import { router } from "../routes/router";
 
 export default function App() {
   const routes = useRoutes(router);
 
   return (
     <>
-      <Suspense
-        fallback={
-          <div className="fixed inset-0 bg-white w-full h-screen">loading</div>
-        }
-      >
-        {routes}
-      </Suspense>
+      <Suspense fallback={<MainLoading />}>{routes}</Suspense>
     </>
   );
 }

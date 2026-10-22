@@ -1,8 +1,9 @@
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import CustomLink from "../Header/CustomLink";
 import { Icons } from "../../icons/icons";
 import { useCollectionsSt } from "../../store/useCollectionsSt";
+import CustomLink from "../Header/CustomLink";
+import Loading from "../Loading";
 
 export default function CollectionSection() {
   const { t, i18n } = useTranslation();
@@ -14,8 +15,8 @@ export default function CollectionSection() {
     getCollections();
   }, [getCollections]);
 
-  if (loading) return <p>{t("loading")}</p>;
-  if (error) return <p>error</p>;
+  if (loading) return <Loading />;
+  if (error) return <p>{error}</p>;
   return (
     <section className="py-10 sm:py-15 lg:py-22.5">
       <div className="container1">

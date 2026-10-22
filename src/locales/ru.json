@@ -6,7 +6,9 @@
     "about": "О нас",
     "collections": "Коллекция музея",
     "gallery": "Галерея",
-    "news": "Новости"
+    "news": "Новости",
+    "announcements": "Объявления",
+    "employees": "Сотрудники"
   },
   "header": {
     "home": "Главная",

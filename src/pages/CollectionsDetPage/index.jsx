@@ -1,9 +1,10 @@
-import { useParams } from "react-router-dom";
-import { useCollectionsSt } from "../../store/useCollectionsSt";
-import { useTranslation } from "react-i18next";
-import Breadcrumbs from "../../components/BreadCrumbs";
 import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
+import { useParams } from "react-router-dom";
+import Breadcrumbs from "../../components/BreadCrumbs";
+import Loading from "../../components/Loading";
 import { useBreadcrumbStore } from "../../store/useBreadCrumStore";
+import { useCollectionsSt } from "../../store/useCollectionsSt";
 
 export default function CollectionsDetPage() {
   const { i18n } = useTranslation();
@@ -11,12 +12,15 @@ export default function CollectionsDetPage() {
   const { coldetailes } = useParams();
   const { setDynamicName } = useBreadcrumbStore();
 
-  const collections = useCollectionsSt((state) => state.collections);
+  const { collection, loading, error, getCollectionBySlug } =
+    useCollectionsSt();
 
-  const currentCollection = collections.find(
-    (item) => item.slug === coldetailes,
-  );
-  const collectionTitle = currentCollection?.title?.[currentLang];
+  useEffect(() => {
+    if (coldetailes) {
+      getCollectionBySlug(coldetailes);
+    }
+  }, [coldetailes, getCollectionBySlug]);
+  const collectionTitle = collection?.title?.[currentLang];
 
   useEffect(() => {
     if (collectionTitle) {
@@ -24,24 +28,29 @@ export default function CollectionsDetPage() {
     }
     return () => setDynamicName("");
   }, [collectionTitle, setDynamicName]);
-  console.log(currentCollection);
+
+  if (loading) return <Loading />;
+  if (error) return <p>{error}</p>;
+  if (!collection) return null;
   return (
     <div>
       <div className="container1">
         <Breadcrumbs />
       </div>
       <div className="container1 pt-8 pb-10">
-        <h2 className="font-bold text-3xl md:text-4xl text-black dark:text-white">{collectionTitle}</h2>
+        <h2 className="font-bold text-2xl md:text-4xl text-black dark:text-white">
+          {collectionTitle}
+        </h2>
       </div>
       <div className="container1 flex flex-col md:flex-row gap-10 md:gap-20 pb-20">
         <div
           dangerouslySetInnerHTML={{
-            __html: currentCollection?.content?.[currentLang],
+            __html: collection?.content?.[currentLang],
           }}
           className="w-full md:w-1/2 text-base md:text-lg"
         ></div>
         <div className="w-full md:w-1/2 rounded-2xl overflow-hidden">
-          <img src={currentCollection?.images?.[0].url} alt={collectionTitle} />
+          <img src={collection?.images?.[0].url} alt={collectionTitle} />
         </div>
       </div>
     </div>

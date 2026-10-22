@@ -2,10 +2,15 @@ import { Navigate } from "react-router-dom";
 import MainLayout from "../layouts/MainLayout";
 import {
   AboutPage,
+  AnnounCementsDetPage,
+  AnnouncementsPage,
   CollectionDetailesPage,
   CollectionsPage,
+  ContactPage,
+  EmployeesPage,
   GalleryPage,
   HomePage,
+  NewsDetailesPage,
   NewsPage,
 } from "../pages";
 import LanguageWrapper from "./LanguageWrapper";
@@ -45,6 +50,26 @@ export const router = [
           {
             path: "news",
             element: <NewsPage />,
+          },
+          {
+            path: "news/:newsDetails",
+            element: <NewsDetailesPage />,
+          },
+          {
+            path: "announcements",
+            element: <AnnouncementsPage />,
+          },
+          {
+            path: "announcements/:announDet",
+            element: <AnnounCementsDetPage />,
+          },
+          {
+            path: "employees",
+            element: <EmployeesPage />,
+          },
+          {
+            path: "contact",
+            element: <ContactPage />,
           },
         ],
       },

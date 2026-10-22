@@ -1,29 +1,40 @@
-import { useTranslation } from "react-i18next";
-import Breadcrumbs from "../../components/BreadCrumbs";
 import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
+import { useSearchParams } from "react-router-dom";
+import Breadcrumbs from "../../components/BreadCrumbs";
 import CustomLink from "../../components/Header/CustomLink";
-import { useCollectionsSt } from "../../store/useCollectionsSt";
+import Loading from "../../components/Loading";
+import Pagination from "../../components/Pagination";
 import { Icons } from "../../icons/icons";
+import { useCollectionsSt } from "../../store/useCollectionsSt";
 
 export default function CollectionsPage() {
   const { t, i18n } = useTranslation();
   const currentLang = i18n.language || "uz";
 
-  const { collections, loading, error, getCollections } = useCollectionsSt();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const currentPage = Number(searchParams.get("page")) || 1;
+
+  const { collections, totalPages, loading, error, getCollections } =
+    useCollectionsSt();
 
   useEffect(() => {
-    getCollections();
-  }, [getCollections]);
+    getCollections(currentPage);
+  }, [currentPage, getCollections]);
 
-  if (loading) return <p>{t("loading")}</p>;
-  if (error) return <p>error</p>;
+  const handlePageChange = (newPage) => {
+    setSearchParams({ page: newPage });
+  };
+
+  if (loading) return <Loading />;
+  if (error) return <p>{error}</p>;
   return (
     <div>
       <div className="container1">
         <Breadcrumbs />
       </div>
       <div className="container1 pb-10 sm:pb-15 lg:pb-22.5">
-        <div className="flex flex-col items-center justify-center pt-8 md:pt-2 mb-10 md:mb-20">
+        <div className="flex flex-col items-center justify-center my-5 md:my-10">
           <h1 className="font-medium text-2xl md:text-3xl mb-3 text-black dark:text-link-hover text-center">
             {t("collections.title")}
           </h1>
@@ -32,7 +43,7 @@ export default function CollectionsPage() {
           </p>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-          {collections.slice(0, 3).map((item) => (
+          {collections.map((item) => (
             <div
               key={item.id}
               className="flex flex-col items-center bg-white dark:bg-dark-main p-4 rounded-xl group"
@@ -69,6 +80,13 @@ export default function CollectionsPage() {
               </div>
             </div>
           ))}
+        </div>
+        <div className="flex items-center justify-center pt-6">
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onChangePage={handlePageChange}
+          />
         </div>
       </div>
     </div>

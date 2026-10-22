@@ -1,20 +1,17 @@
-import { useTranslation } from "react-i18next";
-import CustomLink from "../Header/CustomLink";
-import { Icons } from "../../icons/icons";
 import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
+import { Icons } from "../../icons/icons";
 import { useGalleryStore } from "../../store/useGalleryStore";
+import CustomLink from "../Header/CustomLink";
 
 export default function GallerySection() {
   const { t } = useTranslation();
 
-  const { gallery, loading, error, getGallery } = useGalleryStore();
+  const { gallery, getGallery } = useGalleryStore();
 
   useEffect(() => {
     getGallery();
   }, [getGallery]);
-
-  if (loading) return <p>{t("loading")}</p>;
-  if (error) return <p>error</p>;
   return (
     <section className="py-10">
       <div className="container1">

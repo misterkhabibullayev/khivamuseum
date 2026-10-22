@@ -1,9 +1,9 @@
-import { useTranslation } from "react-i18next";
-import CustomLink from "../Header/CustomLink";
-import { Icons } from "../../icons/icons";
 import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
+import { Icons } from "../../icons/icons";
 import { useNewsStore } from "../../store/useNewsStore";
 import { formatDate } from "../../utils/formatDate";
+import CustomLink from "../Header/CustomLink";
 
 export default function NewsSection() {
   const { t, i18n } = useTranslation();
@@ -33,7 +33,7 @@ export default function NewsSection() {
             <Icons.rightIcon />
           </CustomLink>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-11 sm:grid-rows-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-12 sm:grid-rows-3 gap-4 md:gap-6">
           {news.slice(0, 4).map((item, index) => {
             const mainImgObj = item.images?.find(
               (img) => img.mainImage === true,
@@ -42,39 +42,60 @@ export default function NewsSection() {
             return (
               <div
                 key={item.id}
-                className={`rounded-xl border border-link-hover bg-white dark:bg-dark-main h-full ${index === 0 ? "col-span-1 sm:col-span-6 row-span-1 sm:row-span-3" : ""}`}
+                className={`rounded-xl border border-link-hover bg-white dark:bg-dark-main overflow-hidden ${
+                  index === 0
+                    ? "col-span-1 sm:col-span-6 sm:row-span-3"
+                    : "col-span-1 sm:col-span-6 sm:row-span-1"
+                }`}
               >
-                <div className="w-full h-full">
-                  <CustomLink
-                    to={`/news/${item.slug}`}
-                    className="inline-block rounded-xl overflow-hidden w-full h-full group "
+                <CustomLink
+                  to={`/news/${item.slug}`}
+                  className={`w-full h-full group flex ${
+                    index === 0
+                      ? "flex-col"
+                      : "flex-col sm:flex-row sm:items-center"
+                  }`}
+                >
+                  <div
+                    className={`relative overflow-hidden shrink-0 ${
+                      index === 0
+                        ? "w-full aspect-video"
+                        : "w-full sm:w-48 md:w-56 aspect-video h-full"
+                    }`}
                   >
-                    <div className="relative aspect-video overflow-hidden">
-                      <img
-                        src={thumbnailUrl}
-                        alt={item?.title?.[currentLang]}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-all duration-300"
-                      />
-                      <div className="absolute bottom-2 left-2 flex items-center gap-1 text-white px-3 py-0.5 rounded-full bg-link-hover font-medium text-base">
-                        <Icons.dayIcon />
-                        {formatDate(item.createdAt)}
-                      </div>
-                      <div className="absolute bottom-2 right-2 flex items-center gap-1 text-white px-3 py-0.5 rounded-full bg-link-hover font-medium text-base ">
-                        <Icons.viewIcon />
-                        {item.views}
-                      </div>
+                    <img
+                      src={thumbnailUrl}
+                      alt={item?.title?.[currentLang]}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-all duration-300"
+                    />
+
+                    <div className="absolute bottom-2 left-2 flex items-center gap-1 text-white px-2.5 py-0.5 rounded-full bg-link-hover font-medium text-xs md:text-sm">
+                      <Icons.dayIcon className="w-3.5 h-3.5" />
+                      {formatDate(item.createdAt)}
                     </div>
-                    <div className="p-5 flex-1">
-                      <h2 className="font-medium text-lg md:text-xl line-clamp-3 mb-5 w-full max-h-21">
-                        {item?.title?.[currentLang]}
-                      </h2>
-                      <span className="flex items-center gap-3 group-hover:gap-5 transition-all duration-300 text-sm md:text-base">
-                        {t("more")}
-                        <Icons.arrowTopIcon className="rotate-90" />
-                      </span>
+                    <div className="absolute bottom-2 right-2 flex items-center gap-1 text-white px-2.5 py-0.5 rounded-full bg-link-hover font-medium text-xs md:text-sm">
+                      <Icons.viewIcon className="w-3.5 h-3.5" />
+                      {item.views}
                     </div>
-                  </CustomLink>
-                </div>
+                  </div>
+
+                  <div className="p-4 md:p-5 flex-1 flex flex-col justify-between">
+                    <h2
+                      className={`font-medium text-black dark:text-white line-clamp-2 ${
+                        index === 0
+                          ? "text-lg md:text-2xl mb-4"
+                          : "text-base md:text-lg mb-2"
+                      }`}
+                    >
+                      {item?.title?.[currentLang]}
+                    </h2>
+
+                    <span className="flex items-center gap-2 group-hover:gap-4 transition-all duration-300 text-sm font-medium text-link-hover mt-auto">
+                      {t("more")}
+                      <Icons.arrowTopIcon className="rotate-90 w-4 h-4" />
+                    </span>
+                  </div>
+                </CustomLink>
               </div>
             );
           })}

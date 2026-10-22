@@ -1,4 +1,4 @@
-const BASE_URL = "https://api.atr.uz";
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 export async function fetchAPI(endpoint, options = {}) {
   const res = await fetch(`${BASE_URL}${endpoint}`, {
