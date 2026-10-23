@@ -8,7 +8,8 @@
     "gallery": "Gallery",
     "news": "News",
     "announcements": "Announcements",
-    "employees": "Employees"
+    "employees": "Employees",
+    "contact": "Contact"
   },
   "header": {
     "home": "Home",
@@ -48,6 +49,19 @@
   },
   "news": {
     "title": "News"
+  },
+  "contact": {
+    "questions": "Have questions? Contact us!",
+    "name": "First name",
+    "namePlac": "Enter your first name",
+    "surName": "Last name",
+    "surNamePlac": "Enter your last name",
+    "telefon": "Phone",
+    "telefonPlac": "+998 55 555 55 55",
+    "email": "Email",
+    "emailPlac": "example@gmail.com",
+    "message": "Message",
+    "messagePlac": "Your question/message"
   },
   "footer": {
     "logo": "Khiva \nMuseum",

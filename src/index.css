@@ -18,7 +18,22 @@
   --font-montserrat: "Montserrat", sans-serif;
 }
 
-@variant dark (&:where(.dark, .dark *));
+@media (min-width: 768px) {
+  ::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgb(222, 154, 59);
+    border-radius: 4px;
+  }
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
 
 @layer base {
   html,

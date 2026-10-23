@@ -34,7 +34,8 @@
     "gallery": "Galereya",
     "news": "Yangiliklar",
     "announcements": "E'lonlar",
-    "employees": "Xodimlar"
+    "employees": "Xodimlar",
+    "contact": "Aloqa"
   },
   "header": {
     "home": "Bosh sahifa",
@@ -74,6 +75,19 @@
   },
   "news": {
     "title": "Yangiliklar"
+  },
+  "contact": {
+    "questions": "Savolingiz bormi? Biz bilan bog'laning!",
+    "name": "Ism",
+    "namePlac": "Ismingizni kiriting",
+    "surName": "Familiya",
+    "surNamePlac": "Familiyangizni kiriting",
+    "telefon": "Telefon",
+    "telefonPlac": "+998 55 555 55 55",
+    "email": "Email",
+    "emailPlac": "example@gmail.com",
+    "message": "Xabar",
+    "messagePlac": "Savolingiz/xabaringiz"
   },
   "footer": {
     "logo": "Khiva \nMuseum",

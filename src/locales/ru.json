@@ -8,7 +8,8 @@
     "gallery": "Галерея",
     "news": "Новости",
     "announcements": "Объявления",
-    "employees": "Сотрудники"
+    "employees": "Сотрудники",
+    "contact": "Контакты"
   },
   "header": {
     "home": "Главная",
@@ -48,6 +49,19 @@
   },
   "news": {
     "title": "Новости"
+  },
+  "contact": {
+    "questions": "Есть вопросы? Свяжитесь с нами!",
+    "name": "Имя",
+    "namePlac": "Введите ваше имя",
+    "surName": "Фамилия",
+    "surNamePlac": "Введите вашу фамилию",
+    "telefon": "Телефон",
+    "telefonPlac": "+998 55 555 55 55",
+    "email": "Email",
+    "emailPlac": "example@gmail.com",
+    "message": "Сообщение",
+    "messagePlac": "Ваш вопрос/сообщение"
   },
   "footer": {
     "logo": "Khiva \nMuseum",
