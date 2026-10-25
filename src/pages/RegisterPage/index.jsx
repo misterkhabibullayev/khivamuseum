@@ -50,14 +50,13 @@ export default function RegisterPage() {
       });
 
       if (!res.ok) {
-        let errorMsg = "Server bilan aloqa yo'q (Xatolik: " + res.status + ")";
+        let errorData;
         try {
-          const errData = await res.json();
-          errorMsg = errData.error || errorMsg;
+          errorData = await res.json();
         } catch {
-          // JSON bo'lmasa HTML
+          errorData = { error: "Server bilan aloqa yo'q: " + res.status };
         }
-        throw new Error(errorMsg);
+        throw errorData;
       }
 
       const data = await res.json();
@@ -78,7 +77,7 @@ export default function RegisterPage() {
         state: { email: formData.email.trim() },
       });
     } catch (err) {
-      setError(err.error || "Server bilan xatolik yuzaga keldi");
+      setError(err.error);
     } finally {
       setLoading(false);
     }

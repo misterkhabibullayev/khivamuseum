@@ -31,10 +31,10 @@ export const useProfileStore = create((set, get) => ({
       if (res.ok) {
         set({ profile: result.user || result.data || null });
       } else {
-        set({ error: result.message || "Yuklashda xatolik" });
+        set({ error: result.error || "Yuklashda xatolik" });
       }
     } catch (err) {
-      set({ error: err.message });
+      set({ error: err.error });
     } finally {
       set({ loading: false });
     }
