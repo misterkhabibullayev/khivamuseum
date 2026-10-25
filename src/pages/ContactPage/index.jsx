@@ -9,12 +9,7 @@ export default function ContactPage() {
   const currentLang = i18n.language || "uz";
   const { sendQuestion, submitting } = useQuestionsStore();
 
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm({
+  const { register, handleSubmit, reset } = useForm({
     defaultValues: {
       firstName: "",
       lastName: "",

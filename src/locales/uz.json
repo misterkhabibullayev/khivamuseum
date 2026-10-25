@@ -35,7 +35,8 @@
     "news": "Yangiliklar",
     "announcements": "E'lonlar",
     "employees": "Xodimlar",
-    "contact": "Aloqa"
+    "contact": "Aloqa",
+    "tickets": "Chipta olish"
   },
   "header": {
     "home": "Bosh sahifa",
@@ -88,6 +89,9 @@
     "emailPlac": "example@gmail.com",
     "message": "Xabar",
     "messagePlac": "Savolingiz/xabaringiz"
+  },
+  "tickets": {
+    "title": "Chipta ta'riflari"
   },
   "footer": {
     "logo": "Khiva \nMuseum",

@@ -14,22 +14,24 @@ const ContactPage = lazy(() => import("./ContactPage"));
 const ProfilePage = lazy(() => import("./ProfilePage"));
 const LoginPage = lazy(() => import("./LoginPage"));
 const RegisterPage = lazy(() => import("./RegisterPage"));
+const Verify_OTP_Page = lazy(() => import("./Verify-OTP-Page"));
 const TicketsPage = lazy(() => import("./TicketsPage"));
 
 export {
-  HomePage,
   AboutPage,
-  EmployeesPage,
-  CollectionsPage,
-  CollectionDetailesPage,
-  GalleryPage,
-  NewsPage,
-  NewsDetailesPage,
-  AnnouncementsPage,
   AnnounCementsDetPage,
+  AnnouncementsPage,
+  CollectionDetailesPage,
+  CollectionsPage,
   ContactPage,
-  ProfilePage,
+  EmployeesPage,
+  GalleryPage,
+  HomePage,
   LoginPage,
+  NewsDetailesPage,
+  NewsPage,
+  ProfilePage,
   RegisterPage,
   TicketsPage,
+  Verify_OTP_Page,
 };

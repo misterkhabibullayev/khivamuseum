@@ -1,11 +1,11 @@
-import { Icons } from "../../icons/icons";
-import ThemeToggle from "./ThemeToggle";
-import { useTranslation } from "react-i18next";
-import LanguageDropdown from "./Language";
 import { useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { useLocation } from "react-router-dom";
+import { Icons } from "../../icons/icons";
 import CustomLink from "./CustomLink";
 import HeaderModal from "./HeaderModal";
-import { useLocation } from "react-router-dom";
+import LanguageDropdown from "./Language";
+import ThemeToggle from "./ThemeToggle";
 
 export default function Header() {
   const { t } = useTranslation();
@@ -18,6 +18,21 @@ export default function Header() {
 
   const headerTopRef = useRef(null);
   const [isSticky, setIsSticky] = useState(false);
+  const token = localStorage.getItem("client_token");
+
+  let clientUser = null;
+  try {
+    const rawUser = localStorage.getItem("client_user");
+    clientUser = rawUser ? JSON.parse(rawUser) : null;
+  } catch {
+    clientUser = null;
+  }
+
+  const userLetter = clientUser?.email
+    ? clientUser.email[0].toUpperCase()
+    : clientUser?.firstName
+      ? clientUser.firstName[0].toUpperCase()
+      : "U";
 
   const isHomePage =
     location.pathname === "/" ||
@@ -249,12 +264,24 @@ export default function Header() {
               </div>
               <div>
                 <CustomLink
-                  to={"/login"}
-                  className="flex items-center gap-1 font-bold text-sm leading-[110%] w-full px-1.25 py-1.25 rounded-full bg-link-hover hover:bg-link-hover/80 transition-colors duration-300 text-white"
+                  to={token ? "/profile" : "/login"}
+                  className="flex items-center justify-center gap-1 font-bold text-sm leading-[110%] px-1.25 py-1.25 w-8.5 h-8.5 rounded-full bg-link-hover hover:bg-link-hover/80 transition-colors duration-300 text-white"
                 >
-                  <span>
-                    <Icons.personIcon />
-                  </span>
+                  {token ? (
+                    clientUser?.avatar ? (
+                      <img
+                        src={clientUser.avatar}
+                        alt="Avatar"
+                        className="w-full h-full object-cover rounded-full"
+                      />
+                    ) : (
+                      <span className="font-bold text-xl flex items-center justify-center">{userLetter}</span>
+                    )
+                  ) : (
+                    <span>
+                      <Icons.personIcon />
+                    </span>
+                  )}
                 </CustomLink>
               </div>
             </div>

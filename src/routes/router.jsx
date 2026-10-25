@@ -10,8 +10,13 @@ import {
   EmployeesPage,
   GalleryPage,
   HomePage,
+  LoginPage,
   NewsDetailesPage,
   NewsPage,
+  ProfilePage,
+  RegisterPage,
+  TicketsPage,
+  Verify_OTP_Page,
 } from "../pages";
 import LanguageWrapper from "./LanguageWrapper";
 
@@ -70,6 +75,26 @@ export const router = [
           {
             path: "contact",
             element: <ContactPage />,
+          },
+          {
+            path: "tickets",
+            element: <TicketsPage />,
+          },
+          {
+            path: "login",
+            element: <LoginPage />,
+          },
+          {
+            path: "register",
+            element: <RegisterPage />,
+          },
+          {
+            path: "register/:verify",
+            element: <Verify_OTP_Page />,
+          },
+          {
+            path: "profile",
+            element: <ProfilePage />,
           },
         ],
       },
