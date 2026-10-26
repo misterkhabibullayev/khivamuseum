@@ -10,7 +10,8 @@
     "announcements": "Объявления",
     "employees": "Сотрудники",
     "contact": "Контакты",
-    "tickets": "Получение билета"
+    "tickets": "Получение билета",
+    "profile": "Профиль"
   },
   "header": {
     "home": "Главная",
@@ -63,6 +64,24 @@
     "emailPlac": "example@gmail.com",
     "message": "Сообщение",
     "messagePlac": "Ваш вопрос/сообщение"
+  },
+  "tickets": {
+    "title": "Определения билетов"
+  },
+  "profile": {
+    "myTickets": "Мои билеты",
+    "settings": "Настройки",
+    "logOut": "Выйти",
+    "data": "Данные",
+    "name": "Имя",
+    "lastName": "Фамилия",
+    "save": "Сохранить",
+    "email": "Email",
+    "currentEmail": "Текущий email",
+    "changeEmail": "Изменить email",
+    "passwordUpdate": "Обновление пароля",
+    "lastPassword": "Старый пароль",
+    "newPassword": "Новый пароль"
   },
   "footer": {
     "logo": "Khiva \nMuseum",

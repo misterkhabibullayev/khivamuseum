@@ -7,19 +7,23 @@ import {
   EyeClosed,
   KeyRound,
   Loader2,
+  LogOut,
   Mail,
   Save,
+  Settings,
   SquarePen,
+  Tickets,
   Trash,
   User,
   X,
 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 import Breadcrumbs from "../../components/BreadCrumbs";
 import Loading from "../../components/Loading";
 import { useProfileStore } from "../../store/useProfileStore";
-import { formatDate } from "../../utils/formatDate";
 
 export default function ProfilePage() {
   const {
@@ -43,6 +47,9 @@ export default function ProfilePage() {
   const [showPassword, setShowPassword] = useState(false);
   const [, setSelectedId] = useState(null);
   const [confirm, setConfirm] = useState(false);
+  const { t, i18n } = useTranslation();
+  const currentLang = i18n.language || "uz";
+  const navigate = useNavigate();
 
   const showNotification = (type, text) => {
     setStatusMessage({ type, text });
@@ -245,8 +252,8 @@ export default function ProfilePage() {
 
         <div className="container1 pb-10">
           <Breadcrumbs />
-          <div className="flex flex-col lg:flex-row gap-6">
-            <div className="w-full lg:w-[320px] shrink-0 bg-light-main dark:bg-dark-main p-6 rounded-2xl border border-link-hover flex flex-col items-center text-center">
+          <div className="flex flex-col lg:flex-row gap-6 relative">
+            <div className="lg:sticky top-30 left-0 self-start w-full lg:w-[320px] shrink-0 bg-light-main dark:bg-dark-main p-6 rounded-2xl border border-link-hover flex flex-col items-center text-center">
               <div className="relative">
                 <div className="w-20 h-20 rounded-full overflow-hidden bg-link-hover border-2 border-link-hover flex items-center justify-center font-bold text-3xl text-white">
                   {profile?.images?.length ? (
@@ -297,163 +304,182 @@ export default function ProfilePage() {
               </span>
 
               <div className="w-full mt-6 pt-6 border-t border-link-hover space-y-3 text-sm text-left">
-                <div className="flex justify-between">
-                  <span className="text-gray-400">Ism:</span>
-                  <span className="truncate max-w-42.5" title={profile.email}>
-                    {profile.firstName}
-                  </span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-400">Familiya:</span>
-                  <span className="truncate max-w-42.5" title={profile.email}>
-                    {profile.lastName}
-                  </span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-400">Email:</span>
-                  <span className="truncate max-w-42.5" title={profile.email}>
-                    {profile.email}
-                  </span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-400">Ro'yxatdan o'tgan:</span>
-                  <span>{formatDate(profile.createdAt)}</span>
+                <div className="w-full flex flex-col gap-2">
+                  <a
+                    href="#mytickets"
+                    className="flex items-center gap-4 bg-light-second dark:bg-dark-second px-3 py-2 rounded-lg hover:bg-link-hover hover:text-white hover:gap-5 font-medium text-base transition-all duration-300"
+                  >
+                    <Tickets className="w-5 h-5" />
+                    {t("profile.myTickets")}
+                  </a>
+                  <a
+                    href="#settings"
+                    className="flex items-center gap-4 bg-light-second dark:bg-dark-second px-3 py-2 rounded-lg hover:bg-link-hover hover:text-white hover:gap-5 font-medium text-base transition-all duration-300"
+                  >
+                    <Settings className="w-5 h-5" />
+                    {t("profile.settings")}
+                  </a>
+                  <button
+                    onClick={() => {
+                      localStorage.removeItem("client_token");
+                      navigate(`/${currentLang}/login`);
+                    }}
+                    className="flex items-center gap-4 bg-light-second dark:bg-dark-second px-3 py-2 rounded-lg hover:bg-red-500 hover:text-white hover:gap-5 font-medium text-base transition-all duration-300"
+                  >
+                    <LogOut className="w-5 h-5" />
+                    {t("profile.logOut")}
+                  </button>
                 </div>
               </div>
             </div>
 
-            <div className="flex-1 flex flex-col gap-6">
-              <form
-                onSubmit={handleSubmitName(onUpdateName)}
-                className="row-span-1 bg-light-main dark:bg-dark-main rounded-2xl p-4 border border-link-hover"
+            <div className="w-full h-full">
+              <div
+                id="mytickets"
+                className="scroll-mt-30 bg-light-main dark:bg-dark-main w-full p-6 mb-6 rounded-2xl border border-link-hover"
               >
-                <h3 className="font-medium text-base mb-2 flex items-center gap-2">
-                  <User className="w-5 h-5 text-link-hover" /> Ma'lumotlar
-                </h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <label className="text-xs text-black dark:text-white block pb-1.5">
-                      Ism
-                    </label>
-                    <input
-                      type="text"
-                      {...registerName("firstName", { required: true })}
-                      className="w-full outline-none bg-transparent border border-gray-600 focus:border-link-hover rounded-lg px-3.5 py-2 text-sm"
-                    />
-                  </div>
-                  <div>
-                    <label className="text-xs text-black dark:text-white block pb-1.5">
-                      Familiya
-                    </label>
-                    <input
-                      type="text"
-                      {...registerName("lastName", { required: true })}
-                      className="w-full outline-none bg-transparent border border-gray-600 focus:border-link-hover rounded-lg px-3.5 py-2 text-sm"
-                    />
-                  </div>
-                </div>
-                <div className="flex justify-end pt-4">
-                  <button
-                    type="submit"
-                    disabled={submitting}
-                    className="bg-link-hover hover:opacity-90 text-white px-4 py-1.5 rounded-lg text-sm font-medium flex items-center gap-2 transition"
-                  >
-                    <Save className="w-4 h-4" /> Saqlash
-                  </button>
-                </div>
-              </form>
-
-              <form
-                onSubmit={handleSubmitEmail(onEmailSubmit)}
-                className="bg-light-main dark:bg-dark-main rounded-2xl p-5 border border-link-hover"
+                
+              </div>
+              <div
+                id="settings"
+                className="scroll-mt-30 w-full bg-light-main dark:bg-dark-main rounded-2xl border border-link-hover flex-1 flex flex-col "
               >
-                <h3 className="font-medium text-base mb-4 flex items-center gap-2">
-                  <Mail className="w-5 h-5 text-link-hover" /> Email
-                </h3>
-                <div className="flex flex-col gap-4">
-                  <div>
-                    <label className="text-xs text-black dark:text-white block pb-1.5">
-                      Hozirgi email
-                    </label>
-                    <input
-                      type="email"
-                      disabled
-                      value={profile.email}
-                      className="w-full outline-none bg-gray-800/40 border border-gray-600/50 text-white rounded-lg px-3.5 py-2 text-sm cursor-not-allowed"
-                    />
-                  </div>
-                  <div className="w-full flex items-center justify-end">
-                    <button
-                      onClick={() => setOnEmail(true)}
-                      className="bg-link-hover hover:opacity-90 text-white px-4 py-1.5 rounded-lg text-sm font-medium flex items-center gap-2 transition"
-                    >
-                      <SquarePen className="w-4 h-4" /> Emailni o'zgartirish
-                    </button>
-                  </div>
-                </div>
-              </form>
-
-              <form
-                onSubmit={handleSubmitPassword(onPasswordSubmit)}
-                className="row-span-1 bg-light-main dark:bg-dark-main rounded-2xl p-4 border border-link-hover"
-              >
-                <h3 className="font-medium text-base mb-4 flex items-center gap-2">
-                  <KeyRound className="w-5 h-5 text-link-hover" /> Parolni
-                  yangilash
-                </h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <label className="text-xs text-black dark:text-white block pb-1.5">
-                      Eski parol
-                    </label>
+                <form
+                  onSubmit={handleSubmitName(onUpdateName)}
+                  className="p-4 w-full border-b border-link-hover"
+                >
+                  <h3 className="font-medium text-base mb-2 flex items-center gap-2">
+                    <User className="w-5 h-5 text-link-hover" /> Ma'lumotlar
+                  </h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
+                      <label className="text-xs text-black dark:text-white block pb-1.5">
+                        Ism
+                      </label>
                       <input
-                        type={showPassword ? "text" : "password"}
-                        placeholder="••••••••"
-                        {...registerPassword("oldPassword", { required: true })}
-                        className="w-full outline-none bg-transparent border border-gray-600 focus:border-link-hover rounded-xl px-3.5 py-2 text-sm text-black dark:text-white"
+                        type="text"
+                        {...registerName("firstName", { required: true })}
+                        className="w-full outline-none bg-transparent border border-gray-600 focus:border-link-hover rounded-lg px-3.5 py-2 text-sm"
+                      />
+                    </div>
+                    <div>
+                      <label className="text-xs text-black dark:text-white block pb-1.5">
+                        Familiya
+                      </label>
+                      <input
+                        type="text"
+                        {...registerName("lastName", { required: true })}
+                        className="w-full outline-none bg-transparent border border-gray-600 focus:border-link-hover rounded-lg px-3.5 py-2 text-sm"
                       />
                     </div>
                   </div>
-                  <div>
-                    <label className="text-xs text-black dark:text-white block pb-1.5">
-                      Yangi parol
-                    </label>
-                    <div className="relative">
+                  <div className="flex justify-end pt-4">
+                    <button
+                      type="submit"
+                      disabled={submitting}
+                      className="bg-link-hover hover:opacity-90 text-white px-4 py-1.5 rounded-lg text-sm font-medium flex items-center gap-2 transition"
+                    >
+                      <Save className="w-4 h-4" /> Saqlash
+                    </button>
+                  </div>
+                </form>
+
+                <form
+                  onSubmit={handleSubmitEmail(onEmailSubmit)}
+                  className="p-4 border-b border-link-hover"
+                >
+                  <h3 className="font-medium text-base mb-4 flex items-center gap-2">
+                    <Mail className="w-5 h-5 text-link-hover" /> Email
+                  </h3>
+                  <div className="flex flex-col gap-4">
+                    <div>
+                      <label className="text-xs text-black dark:text-white block pb-1.5">
+                        Hozirgi email
+                      </label>
                       <input
-                        type={showPassword ? "text" : "password"}
-                        placeholder="••••••••"
-                        {...registerPassword("newPassword", { required: true })}
-                        className="w-full outline-none bg-transparent border border-gray-600 focus:border-link-hover rounded-xl px-3.5 py-2 text-sm text-black dark:text-white"
+                        type="email"
+                        disabled
+                        value={profile.email}
+                        className="w-full outline-none bg-gray-800/40 border border-gray-600/50 text-white rounded-lg px-3.5 py-2 text-sm cursor-not-allowed"
                       />
+                    </div>
+                    <div className="w-full flex items-center justify-end">
                       <button
-                        type="button"
-                        onClick={(e) => {
-                          e.preventDefault();
-                          e.stopPropagation();
-                          setShowPassword((prev) => !prev);
-                        }}
-                        className="absolute right-2 top-1/2 -translate-y-1/2 p-1"
+                        onClick={() => setOnEmail(true)}
+                        className="bg-link-hover hover:opacity-90 text-white px-4 py-1.5 rounded-lg text-sm font-medium flex items-center gap-2 transition"
                       >
-                        {showPassword ? (
-                          <Eye className="w-4 h-4" />
-                        ) : (
-                          <EyeClosed className="w-4 h-4" />
-                        )}
+                        <SquarePen className="w-4 h-4" /> Emailni o'zgartirish
                       </button>
                     </div>
                   </div>
-                </div>
-                <div className="flex justify-end pt-4">
-                  <button
-                    type="submit"
-                    disabled={submitting}
-                    className="border border-link-hover text-link-hover hover:bg-link-hover hover:text-white px-4 py-2 rounded-xl text-sm font-medium transition"
-                  >
-                    Parolni o'zgartirish
-                  </button>
-                </div>
-              </form>
+                </form>
+
+                <form
+                  onSubmit={handleSubmitPassword(onPasswordSubmit)}
+                  className="p-4"
+                >
+                  <h3 className="font-medium text-base mb-4 flex items-center gap-2">
+                    <KeyRound className="w-5 h-5 text-link-hover" /> Parolni
+                    yangilash
+                  </h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <label className="text-xs text-black dark:text-white block pb-1.5">
+                        Eski parol
+                      </label>
+                      <div>
+                        <input
+                          type={showPassword ? "text" : "password"}
+                          placeholder="••••••••"
+                          {...registerPassword("oldPassword", {
+                            required: true,
+                          })}
+                          className="w-full outline-none bg-transparent border border-gray-600 focus:border-link-hover rounded-xl px-3.5 py-2 text-sm text-black dark:text-white"
+                        />
+                      </div>
+                    </div>
+                    <div>
+                      <label className="text-xs text-black dark:text-white block pb-1.5">
+                        Yangi parol
+                      </label>
+                      <div className="relative">
+                        <input
+                          type={showPassword ? "text" : "password"}
+                          placeholder="••••••••"
+                          {...registerPassword("newPassword", {
+                            required: true,
+                          })}
+                          className="w-full outline-none bg-transparent border border-gray-600 focus:border-link-hover rounded-xl px-3.5 py-2 text-sm text-black dark:text-white"
+                        />
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            setShowPassword((prev) => !prev);
+                          }}
+                          className="absolute right-2 top-1/2 -translate-y-1/2 p-1"
+                        >
+                          {showPassword ? (
+                            <Eye className="w-4 h-4" />
+                          ) : (
+                            <EyeClosed className="w-4 h-4" />
+                          )}
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex justify-end pt-4">
+                    <button
+                      type="submit"
+                      disabled={submitting}
+                      className="border border-link-hover text-link-hover hover:bg-link-hover hover:text-white px-4 py-2 rounded-xl text-sm font-medium transition"
+                    >
+                      Parolni o'zgartirish
+                    </button>
+                  </div>
+                </form>
+              </div>
             </div>
           </div>
         </div>

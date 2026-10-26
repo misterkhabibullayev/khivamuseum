@@ -10,7 +10,8 @@
     "announcements": "Announcements",
     "employees": "Employees",
     "contact": "Contact",
-    "tickets": "Getting a ticket"
+    "tickets": "Getting a ticket",
+    "profile": "Profile"
   },
   "header": {
     "home": "Home",
@@ -63,6 +64,24 @@
     "emailPlac": "example@gmail.com",
     "message": "Message",
     "messagePlac": "Your question/message"
+  },
+  "tickets": {
+    "title": "Ticket definitions"
+  },
+  "profile": {
+    "myTickets": "My Tickets",
+    "settings": "Settings",
+    "logOut": "Log Out",
+    "data": "Data",
+    "name": "First Name",
+    "lastName": "Last Name",
+    "save": "Save",
+    "email": "Email",
+    "currentEmail": "Current Email",
+    "changeEmail": "Change Email",
+    "passwordUpdate": "Update Password",
+    "lastPassword": "Old Password",
+    "newPassword": "New Password"
   },
   "footer": {
     "logo": "Khiva \nMuseum",

@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router-dom";
 import { Icons } from "../../icons/icons";
+import { useProfileStore } from "../../store/useProfileStore";
 import CustomLink from "./CustomLink";
 import HeaderModal from "./HeaderModal";
 import LanguageDropdown from "./Language";
@@ -20,30 +21,10 @@ export default function Header() {
   const [isSticky, setIsSticky] = useState(false);
   const token = localStorage.getItem("client_token");
 
-  let clientUser = null;
-  try {
-    const rawUser = localStorage.getItem("client_user");
-    clientUser = rawUser ? JSON.parse(rawUser) : null;
-  } catch {
-    clientUser = null;
-  }
-
-  const userLetter = clientUser?.email
-    ? clientUser.email[0].toUpperCase()
-    : clientUser?.firstName
-      ? clientUser.firstName[0].toUpperCase()
-      : "U";
-
-  const isHomePage =
-    location.pathname === "/" ||
-    location.pathname === "/uz" ||
-    location.pathname === "/ru" ||
-    location.pathname === "/en" ||
-    location.pathname === "/uz/" ||
-    location.pathname === "/ru/" ||
-    location.pathname === "/en/";
-
-  // const isSolidBg = isSticky || !isHomePage;
+  const { profile, getProfile } = useProfileStore();
+  useEffect(() => {
+    getProfile();
+  }, [getProfile]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -60,6 +41,25 @@ export default function Header() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  let clientUser = null;
+  try {
+    const rawUser = localStorage.getItem("client_user");
+    clientUser = rawUser ? JSON.parse(rawUser) : null;
+  } catch {
+    clientUser = null;
+  }
+  console.log(clientUser);
+
+  const isHomePage =
+    location.pathname === "/" ||
+    location.pathname === "/uz" ||
+    location.pathname === "/ru" ||
+    location.pathname === "/en" ||
+    location.pathname === "/uz/" ||
+    location.pathname === "/ru/" ||
+    location.pathname === "/en/";
+
   return (
     <>
       <header
@@ -265,17 +265,22 @@ export default function Header() {
               <div>
                 <CustomLink
                   to={token ? "/profile" : "/login"}
-                  className="flex items-center justify-center gap-1 font-bold text-sm leading-[110%] px-1.25 py-1.25 w-8.5 h-8.5 rounded-full bg-link-hover hover:bg-link-hover/80 transition-colors duration-300 text-white"
+                  className="flex items-center justify-center gap-1 font-bold text-sm leading-[110%] w-8.5 h-8.5 rounded-full bg-link-hover hover:bg-link-hover/80 transition-colors duration-300 text-white overflow-hidden border border-link-hover"
                 >
-                  {token ? (
-                    clientUser?.avatar ? (
-                      <img
-                        src={clientUser.avatar}
-                        alt="Avatar"
-                        className="w-full h-full object-cover rounded-full"
-                      />
+                  {token && profile ? (
+                    profile?.images?.length === 0 ? (
+                      <div>
+                        {profile?.firstName?.[0]}
+                        {profile.lastName?.[0]}
+                      </div>
                     ) : (
-                      <span className="font-bold text-xl flex items-center justify-center">{userLetter}</span>
+                      <div>
+                        <img
+                          src={profile.images?.[0].url}
+                          alt=""
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
                     )
                   ) : (
                     <span>

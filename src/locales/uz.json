@@ -36,7 +36,8 @@
     "announcements": "E'lonlar",
     "employees": "Xodimlar",
     "contact": "Aloqa",
-    "tickets": "Chipta olish"
+    "tickets": "Chipta olish",
+    "profile": "Profil"
   },
   "header": {
     "home": "Bosh sahifa",
@@ -92,6 +93,21 @@
   },
   "tickets": {
     "title": "Chipta ta'riflari"
+  },
+  "profile": {
+    "myTickets": "Mening chiptalarim",
+    "settings": "Sozlamalar",
+    "logOut": "Chiqish",
+    "data": "Ma'lumotlar",
+    "name": "Ism",
+    "lastName": "Familiya",
+    "save": "Saqlash",
+    "email": "Email",
+    "currentEmail": "Hozirgi email",
+    "changeEmail": "Emailni o'zgartirish",
+    "passwordUpdate": "Parolni yangilash",
+    "lastPassword": "Eski parol",
+    "newPassword": "Yangi parol"
   },
   "footer": {
     "logo": "Khiva \nMuseum",
