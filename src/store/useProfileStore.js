@@ -37,6 +37,14 @@ export const useProfileStore = create((set, get) => ({
       } else {
         set({ error: result.error || "Yuklashda xatolik" });
       }
+
+      if (result.status === 401) {
+        localStorage.removeItem("token");
+        if (window.location.pathname !== "/login") {
+          window.location.href = "/login";
+        }
+        return Promise.reject(new Error("Token muddati tugagan"));
+      }
     } catch (err) {
       set({ error: err.error });
     } finally {

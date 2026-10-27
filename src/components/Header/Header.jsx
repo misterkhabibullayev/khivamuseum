@@ -177,7 +177,7 @@ export default function Header() {
                       <div className="w-full flex flex-col items-center bg-link-hover rounded-lg">
                         <CustomLink
                           to={"/about"}
-                          className="font-medium text-base leading-[130%] px-5 py-2 text-white"
+                          className="font-medium text-base leading-[130%] px-5 py-2 text-white text-center"
                         >
                           {t("header.aboutTheMuseum")}
                         </CustomLink>
