@@ -81,7 +81,13 @@
     "changeEmail": "Change Email",
     "passwordUpdate": "Update Password",
     "lastPassword": "Old Password",
-    "newPassword": "New Password"
+    "newPassword": "New Password",
+    "changePassword": "Password update",
+    "xaridor": "Customer",
+    "visitDay": "Visit Date",
+    "persons": "Number of People",
+    "phone": "Phone",
+    "perDay": "Validity Period"
   },
   "footer": {
     "logo": "Khiva \nMuseum",

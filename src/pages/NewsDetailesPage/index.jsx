@@ -1,12 +1,19 @@
-import { CalendarDays, Eye } from "lucide-react";
+import { CalendarDays, ChevronLeft, ChevronRight, Eye } from "lucide-react";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
+import { Swiper, SwiperSlide } from "swiper/react";
 import Breadcrumbs from "../../components/BreadCrumbs";
 import Loading from "../../components/Loading";
 import { useBreadcrumbStore } from "../../store/useBreadCrumStore";
 import { useNewsStore } from "../../store/useNewsStore";
 import { formatDate } from "../../utils/formatDate";
+
+import "swiper/css";
+import "swiper/css/navigation";
+
+import { Navigation } from "swiper/modules";
+import "../../index.css";
 
 export default function NewsDetailesPage() {
   const { i18n } = useTranslation();
@@ -38,7 +45,7 @@ export default function NewsDetailesPage() {
       <div className="container1">
         <Breadcrumbs />
       </div>
-      <div className="container1 pt-8 pb-10">
+      <div className="container1 pt-8 pb-8">
         <h2 className="font-bold text-xl md:text-2xl text-black dark:text-white mb-2">
           {newsTitle}
         </h2>
@@ -53,11 +60,36 @@ export default function NewsDetailesPage() {
           </div>
         </div>
       </div>
-      <div className="container1 flex flex-col md:flex-row gap-10 md:gap-20 pb-20">
-        <div className="w-full md:w-1/2 rounded-2xl overflow-hidden">
-          <img src={news1?.images?.[0].url} alt={newsTitle} className="w-full h-full object-cover" />
+      <div className="container1 flex flex-col lg:flex-row lg:items-start gap-10 pb-20">
+        <div className="w-full aspect-video rounded-2xl overflow-hidden bg-light-main dark:bg-dark-main relative">
+          <button className="custom-prev-btn absolute top-1/2 left-1 -translate-y-1/2 z-10 p-1 rounded-full bg-link-hover text-white">
+            <ChevronLeft className="w-6 h-6" />
+          </button>
+          <button className="custom-next-btn absolute top-1/2 right-1 -translate-y-1/2 z-10 p-1 rounded-full bg-link-hover text-white">
+            <ChevronRight className="w-6 h-6" />
+          </button>
+          <Swiper
+            spaceBetween={30}
+            loop={true}
+            navigation={{
+              prevEl: ".custom-prev-btn",
+              nextEl: ".custom-next-btn",
+            }}
+            modules={[Navigation]}
+            className="mySwiper w-full h-full"
+          >
+            {news1.images.map((item, i) => (
+              <SwiperSlide key={i} className="w-full h-full">
+                <img
+                  src={item.url}
+                  alt={newsTitle}
+                  className="w-full h-full object-cover"
+                />
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </div>
-        <div className="w-full md:w-1/2">
+        <div className="w-full">
           <div
             dangerouslySetInnerHTML={{
               __html: news1?.description?.[currentLang],

@@ -107,7 +107,13 @@
     "changeEmail": "Emailni o'zgartirish",
     "passwordUpdate": "Parolni yangilash",
     "lastPassword": "Eski parol",
-    "newPassword": "Yangi parol"
+    "newPassword": "Yangi parol",
+    "changePassword": "Parolni yangilash",
+    "xaridor": "Xaridor",
+    "visitDay": "Tashrif sanasi",
+    "persons": "Kishilar soni",
+    "phone": "Telefon",
+    "perDay": "Amal qilish muddati"
   },
   "footer": {
     "logo": "Khiva \nMuseum",

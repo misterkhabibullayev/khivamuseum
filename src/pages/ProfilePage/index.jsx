@@ -24,6 +24,7 @@ import { useNavigate } from "react-router-dom";
 import Breadcrumbs from "../../components/BreadCrumbs";
 import Loading from "../../components/Loading";
 import { useProfileStore } from "../../store/useProfileStore";
+import { formatDate } from "../../utils/formatDate";
 
 export default function ProfilePage() {
   const {
@@ -38,7 +39,12 @@ export default function ProfilePage() {
     updatePassword,
     requestEmailChange,
     confirmEmailChange,
+    getMyOrders,
+    orders,
+    ordersLoading,
   } = useProfileStore();
+
+  console.log(orders);
 
   const [onEmail, setOnEmail] = useState(false);
   const [emailStep, setEmailStep] = useState(1);
@@ -50,6 +56,10 @@ export default function ProfilePage() {
   const { t, i18n } = useTranslation();
   const currentLang = i18n.language || "uz";
   const navigate = useNavigate();
+
+  useEffect(() => {
+    getMyOrders?.();
+  }, [getMyOrders]);
 
   const showNotification = (type, text) => {
     setStatusMessage({ type, text });
@@ -253,7 +263,7 @@ export default function ProfilePage() {
         <div className="container1 pb-10">
           <Breadcrumbs />
           <div className="flex flex-col lg:flex-row gap-6 relative">
-            <div className="lg:sticky top-30 left-0 self-start w-full lg:w-[320px] shrink-0 bg-light-main dark:bg-dark-main p-6 rounded-2xl border border-link-hover flex flex-col items-center text-center">
+            <div className="lg:sticky top-30 left-0 self-start w-full lg:w-[320px] shrink-0 bg-light-main dark:bg-dark-main p-6 mt-10 lg:mt-0 rounded-2xl border border-link-hover flex flex-col items-center text-center">
               <div className="relative">
                 <div className="w-20 h-20 rounded-full overflow-hidden bg-link-hover border-2 border-link-hover flex items-center justify-center font-bold text-3xl text-white">
                   {profile?.images?.length ? (
@@ -336,25 +346,90 @@ export default function ProfilePage() {
             <div className="w-full h-full">
               <div
                 id="mytickets"
-                className="scroll-mt-30 bg-light-main dark:bg-dark-main w-full p-6 mb-6 rounded-2xl border border-link-hover"
+                className="scroll-mt-17.5 lg:scroll-mt-30 bg-light-main dark:bg-dark-main w-full p-6 mb-6 rounded-2xl border border-link-hover"
               >
-                
+                {ordersLoading ? (
+                  <Loading />
+                ) : (
+                  orders.map((item) => (
+                    <div
+                      key={item.id}
+                      className="flex items-center h-auto bg-link-hover relative text-white"
+                    >
+                      <div className="w-5 h-5 bg-light-main dark:bg-dark-main absolute -top-2.5 -left-2.5 z-1 rounded-full"></div>
+                      <div className="w-5 h-5 bg-light-main dark:bg-dark-main absolute -top-2.5 -right-2.5 z-1 rounded-full"></div>
+                      <div className="w-5 h-5 bg-light-main dark:bg-dark-main absolute -bottom-2.5 -left-2.5 z-1 rounded-full"></div>
+                      <div className="w-5 h-5 bg-light-main dark:bg-dark-main absolute -bottom-2.5 -right-2.5 z-1 rounded-full"></div>
+                      <div className="w-25 h-50 bg-link-hover flex items-center justify-center relative">
+                        <p className="-rotate-90 whitespace-nowrap font-bold text-xl">
+                          {item.ticketNumber}
+                        </p>
+                      </div>
+                      <div className="flex flex-col items-center justify-between h-50">
+                        <div className="w-5 h-5 bg-light-main dark:bg-dark-main rounded-full -translate-y-1/2"></div>
+                        <div className="w-px flex-1 h-full border border-dashed border-light-main dark:border-dark-main"></div>
+                        <div className="w-5 h-5 bg-light-main dark:bg-dark-main rounded-full translate-y-1/2"></div>
+                      </div>
+                      <div className="w-full h-50 p-6 grid grid-cols-1 grid-rows-3 gap-y-4">
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center gap-2">
+                            <span className="text-sm uppercase font-medium">
+                              {t("profile.xaridor")}:
+                            </span>
+                            <h1 className="font-bold text-xl">
+                              {item.customerName}
+                            </h1>
+                          </div>
+                          <div className="px-3 py-1 bg-light-main dark:bg-dark-main rounded-2xl text-black dark:text-white">
+                            <p className="text-sm">{item.status}</p>
+                          </div>
+                        </div>
+                        <div className="w-full grid grid-cols-3">
+                          <div>
+                            <p className="text-sm font-medium">
+                              {t("profile.visitDay")}
+                            </p>
+                            <p className="font-bold">
+                              {formatDate(item.visitDate)}
+                            </p>
+                          </div>
+                          <div>
+                            <p className="text-sm font-medium">{t("profile.persons")}</p>
+                            <p className="font-bold">{item.totalPersons}</p>
+                          </div>
+                          <div>
+                            <p className="text-sm font-medium">{t("profile.phone")}</p>
+                            <p className="font-bold">{item.customerPhone}</p>
+                          </div>
+                        </div>
+                        <div className="flex items-center justify-between">
+                          <p className="font-medium">
+                            {t("profile.perDay")} {formatDate(item.validUntil)}
+                          </p>
+                          <p className="font-mono">
+                            ID: {item.id}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  ))
+                )}
               </div>
               <div
                 id="settings"
-                className="scroll-mt-30 w-full bg-light-main dark:bg-dark-main rounded-2xl border border-link-hover flex-1 flex flex-col "
+                className="scroll-mt-17.5 lg:scroll-mt-30 w-full bg-light-main dark:bg-dark-main rounded-2xl border border-link-hover flex-1 flex flex-col "
               >
                 <form
                   onSubmit={handleSubmitName(onUpdateName)}
                   className="p-4 w-full border-b border-link-hover"
                 >
                   <h3 className="font-medium text-base mb-2 flex items-center gap-2">
-                    <User className="w-5 h-5 text-link-hover" /> Ma'lumotlar
+                    <User className="w-5 h-5 text-link-hover" /> {t("profile.data")}
                   </h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <label className="text-xs text-black dark:text-white block pb-1.5">
-                        Ism
+                        {t("profile.name")}
                       </label>
                       <input
                         type="text"
@@ -364,7 +439,7 @@ export default function ProfilePage() {
                     </div>
                     <div>
                       <label className="text-xs text-black dark:text-white block pb-1.5">
-                        Familiya
+                        {t("prfoile.lastName")}
                       </label>
                       <input
                         type="text"
@@ -379,7 +454,7 @@ export default function ProfilePage() {
                       disabled={submitting}
                       className="bg-link-hover hover:opacity-90 text-white px-4 py-1.5 rounded-lg text-sm font-medium flex items-center gap-2 transition"
                     >
-                      <Save className="w-4 h-4" /> Saqlash
+                      <Save className="w-4 h-4" /> {t("profile.save")}
                     </button>
                   </div>
                 </form>
@@ -389,12 +464,12 @@ export default function ProfilePage() {
                   className="p-4 border-b border-link-hover"
                 >
                   <h3 className="font-medium text-base mb-4 flex items-center gap-2">
-                    <Mail className="w-5 h-5 text-link-hover" /> Email
+                    <Mail className="w-5 h-5 text-link-hover" /> {t("profile.email")}
                   </h3>
                   <div className="flex flex-col gap-4">
                     <div>
                       <label className="text-xs text-black dark:text-white block pb-1.5">
-                        Hozirgi email
+                        {t("profile.currentEmail")}
                       </label>
                       <input
                         type="email"
@@ -408,7 +483,7 @@ export default function ProfilePage() {
                         onClick={() => setOnEmail(true)}
                         className="bg-link-hover hover:opacity-90 text-white px-4 py-1.5 rounded-lg text-sm font-medium flex items-center gap-2 transition"
                       >
-                        <SquarePen className="w-4 h-4" /> Emailni o'zgartirish
+                        <SquarePen className="w-4 h-4" /> {t("profile.changeEmail")}
                       </button>
                     </div>
                   </div>
@@ -419,13 +494,12 @@ export default function ProfilePage() {
                   className="p-4"
                 >
                   <h3 className="font-medium text-base mb-4 flex items-center gap-2">
-                    <KeyRound className="w-5 h-5 text-link-hover" /> Parolni
-                    yangilash
+                    <KeyRound className="w-5 h-5 text-link-hover" /> {t("profile.passwordUpdate")}
                   </h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <label className="text-xs text-black dark:text-white block pb-1.5">
-                        Eski parol
+                        {t("profile.lastPassword")}
                       </label>
                       <div>
                         <input
@@ -440,7 +514,7 @@ export default function ProfilePage() {
                     </div>
                     <div>
                       <label className="text-xs text-black dark:text-white block pb-1.5">
-                        Yangi parol
+                        {t("profile.newPassword")}
                       </label>
                       <div className="relative">
                         <input
@@ -475,7 +549,7 @@ export default function ProfilePage() {
                       disabled={submitting}
                       className="border border-link-hover text-link-hover hover:bg-link-hover hover:text-white px-4 py-2 rounded-xl text-sm font-medium transition"
                     >
-                      Parolni o'zgartirish
+                      {t("profile.changePassword")}
                     </button>
                   </div>
                 </form>

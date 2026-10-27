@@ -76,12 +76,18 @@
     "name": "Имя",
     "lastName": "Фамилия",
     "save": "Сохранить",
-    "email": "Email",
-    "currentEmail": "Текущий email",
-    "changeEmail": "Изменить email",
+    "email": "Электронная почта",
+    "currentEmail": "Текущий e. почты",
+    "changeEmail": "Изменить e. почты",
     "passwordUpdate": "Обновление пароля",
     "lastPassword": "Старый пароль",
-    "newPassword": "Новый пароль"
+    "newPassword": "Новый пароль",
+    "changePassword": "Обновление пароля",
+    "xaridor": "Покупатель",
+    "visitDay": "Дата визита",
+    "persons": "Количество человек",
+    "phone": "Телефон",
+    "perDay": "Срок действия"
   },
   "footer": {
     "logo": "Khiva \nMuseum",

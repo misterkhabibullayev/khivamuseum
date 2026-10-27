@@ -19,6 +19,10 @@ export const useProfileStore = create((set, get) => ({
   submitting: false,
   error: null,
 
+  orders: [],
+  ordersMeta: null,
+  ordersLoading: false,
+
   getProfile: async () => {
     set({ loading: true, error: null });
     try {
@@ -37,6 +41,42 @@ export const useProfileStore = create((set, get) => ({
       set({ error: err.error });
     } finally {
       set({ loading: false });
+    }
+  },
+
+  getMyOrders: async (page = 1) => {
+    set({ ordersLoading: true });
+    try {
+      const params = new URLSearchParams({
+        page: String(page),
+      });
+
+      const res = await fetch(
+        `${BASE_URL_PROFILE}/tickets/my/orders?${params.toString()}`,
+        {
+          method: "GET",
+          headers: getHeaders(true),
+          cache: "no-store",
+        },
+      );
+      const result = await res.json();
+
+      if (res.ok) {
+        set({
+          orders: result.data || [],
+          ordersMeta: result.meta || null,
+        });
+        return { success: true, data: result.data, meta: result.meta };
+      }
+
+      return {
+        success: false,
+        message: result.message || "Chiptalarni yuklab bo'lmadi",
+      };
+    } catch (err) {
+      return { success: false, message: err.message };
+    } finally {
+      set({ ordersLoading: false });
     }
   },
 
