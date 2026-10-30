@@ -346,7 +346,7 @@ export default function ProfilePage() {
             <div className="w-full h-full">
               <div
                 id="mytickets"
-                className="scroll-mt-17.5 lg:scroll-mt-30 bg-light-main dark:bg-dark-main w-full p-6 mb-6 rounded-2xl border border-link-hover"
+                className="scroll-mt-17.5 lg:scroll-mt-30 bg-light-main dark:bg-dark-main w-full p-6 mb-6 rounded-2xl border border-link-hover select-none overflow-x-auto"
               >
                 {ordersLoading ? (
                   <Loading />
@@ -354,7 +354,7 @@ export default function ProfilePage() {
                   orders.map((item) => (
                     <div
                       key={item.id}
-                      className="flex items-center h-auto bg-link-hover relative text-white"
+                      className="flex items-center h-auto bg-link-hover relative text-white min-w-150"
                     >
                       <div className="w-5 h-5 bg-light-main dark:bg-dark-main absolute -top-2.5 -left-2.5 z-1 rounded-full"></div>
                       <div className="w-5 h-5 bg-light-main dark:bg-dark-main absolute -top-2.5 -right-2.5 z-1 rounded-full"></div>

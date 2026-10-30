@@ -26,7 +26,7 @@ export default function NewsSection() {
             {t("news.title")}
           </h2>
           <CustomLink
-            to="/gallery"
+            to="/news"
             className="flex items-center gap-1 border border-link-hover px-5 rounded-full py-1 text-sm md:text-base hover:bg-link-hover hover:text-white transition-all duration-300"
           >
             {t("more")}
