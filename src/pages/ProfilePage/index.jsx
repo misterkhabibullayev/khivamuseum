@@ -1,3 +1,4 @@
+import { Fancybox } from "@fancyapps/ui";
 import {
   ArrowLeft,
   Camera,
@@ -106,6 +107,13 @@ export default function ProfilePage() {
       });
     }
   }, [profile, resetName]);
+
+  useEffect(() => {
+    Fancybox.bind("[data-fancybox='gallery']", {});
+    return () => {
+      Fancybox.destroy();
+    };
+  }, []);
 
   const onUpdateName = async (data) => {
     const res = await updateProfileName(data);
@@ -267,11 +275,16 @@ export default function ProfilePage() {
               <div className="relative">
                 <div className="w-20 h-20 rounded-full overflow-hidden bg-link-hover border-2 border-link-hover flex items-center justify-center font-bold text-3xl text-white">
                   {profile?.images?.length ? (
-                    <img
-                      src={profile.images[0].url}
-                      alt="profile"
-                      className="w-full h-full object-cover"
-                    />
+                    <a href={profile.images[0].url} data-fancybox="gallery" className="w-full h-full relative flex group">
+                      <img
+                        src={profile.images[0].url}
+                        alt="profile"
+                        className="w-full h-full object-cover"
+                      />
+                      <div className="absolute top-0 left-0 w-full h-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center bg-black/50">
+                        <Eye className="w-5 h-5" />
+                      </div>
+                    </a>
                   ) : (
                     <span>
                       {profile.firstName?.[0]}
@@ -394,11 +407,15 @@ export default function ProfilePage() {
                             </p>
                           </div>
                           <div>
-                            <p className="text-sm font-medium">{t("profile.persons")}</p>
+                            <p className="text-sm font-medium">
+                              {t("profile.persons")}
+                            </p>
                             <p className="font-bold">{item.totalPersons}</p>
                           </div>
                           <div>
-                            <p className="text-sm font-medium">{t("profile.phone")}</p>
+                            <p className="text-sm font-medium">
+                              {t("profile.phone")}
+                            </p>
                             <p className="font-bold">{item.customerPhone}</p>
                           </div>
                         </div>
@@ -406,9 +423,7 @@ export default function ProfilePage() {
                           <p className="font-medium">
                             {t("profile.perDay")} {formatDate(item.validUntil)}
                           </p>
-                          <p className="font-mono">
-                            ID: {item.id}
-                          </p>
+                          <p className="font-mono">ID: {item.id}</p>
                         </div>
                       </div>
                     </div>
@@ -424,7 +439,8 @@ export default function ProfilePage() {
                   className="p-4 w-full border-b border-link-hover"
                 >
                   <h3 className="font-medium text-base mb-2 flex items-center gap-2">
-                    <User className="w-5 h-5 text-link-hover" /> {t("profile.data")}
+                    <User className="w-5 h-5 text-link-hover" />{" "}
+                    {t("profile.data")}
                   </h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
@@ -464,7 +480,8 @@ export default function ProfilePage() {
                   className="p-4 border-b border-link-hover"
                 >
                   <h3 className="font-medium text-base mb-4 flex items-center gap-2">
-                    <Mail className="w-5 h-5 text-link-hover" /> {t("profile.email")}
+                    <Mail className="w-5 h-5 text-link-hover" />{" "}
+                    {t("profile.email")}
                   </h3>
                   <div className="flex flex-col gap-4">
                     <div>
@@ -483,7 +500,8 @@ export default function ProfilePage() {
                         onClick={() => setOnEmail(true)}
                         className="bg-link-hover hover:opacity-90 text-white px-4 py-1.5 rounded-lg text-sm font-medium flex items-center gap-2 transition"
                       >
-                        <SquarePen className="w-4 h-4" /> {t("profile.changeEmail")}
+                        <SquarePen className="w-4 h-4" />{" "}
+                        {t("profile.changeEmail")}
                       </button>
                     </div>
                   </div>
@@ -494,7 +512,8 @@ export default function ProfilePage() {
                   className="p-4"
                 >
                   <h3 className="font-medium text-base mb-4 flex items-center gap-2">
-                    <KeyRound className="w-5 h-5 text-link-hover" /> {t("profile.passwordUpdate")}
+                    <KeyRound className="w-5 h-5 text-link-hover" />{" "}
+                    {t("profile.passwordUpdate")}
                   </h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>

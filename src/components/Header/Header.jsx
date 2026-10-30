@@ -49,7 +49,7 @@ export default function Header() {
   } catch {
     clientUser = null;
   }
-  console.log(clientUser);
+  // console.log(clientUser);
 
   const isHomePage =
     location.pathname === "/" ||
@@ -274,7 +274,7 @@ export default function Header() {
                         {profile.lastName?.[0]}
                       </div>
                     ) : (
-                      <div>
+                      <div className="w-full h-full">
                         <img
                           src={profile.images?.[0].url}
                           alt=""

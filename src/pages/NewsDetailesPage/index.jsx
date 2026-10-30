@@ -45,22 +45,7 @@ export default function NewsDetailesPage() {
       <div className="container1">
         <Breadcrumbs />
       </div>
-      <div className="container1 pt-8 pb-8">
-        <h2 className="font-bold text-xl md:text-2xl text-black dark:text-white mb-2">
-          {newsTitle}
-        </h2>
-        <div className="flex items-center gap-6">
-          <div className="flex items-center gap-1 text-sm leading-[130%]">
-            <CalendarDays className="w-4 h-4" />
-            {formatDate(news1.createdAt)}
-          </div>
-          <div className="flex items-center gap-1 text-sm leading-[130%]">
-            <Eye className="w-4 h-4" />
-            {news1.views}
-          </div>
-        </div>
-      </div>
-      <div className="container1 flex flex-col lg:flex-row lg:items-start gap-10 pb-20">
+      <div className="container1 flex flex-col lg:flex-row lg:items-start gap-10 pb-20 pt-4">
         <div className="w-full aspect-video rounded-2xl overflow-hidden bg-light-main dark:bg-dark-main relative">
           <button className="custom-prev-btn absolute top-1/2 left-1 -translate-y-1/2 z-10 p-1 rounded-full bg-link-hover text-white">
             <ChevronLeft className="w-6 h-6" />
@@ -90,6 +75,21 @@ export default function NewsDetailesPage() {
           </Swiper>
         </div>
         <div className="w-full">
+          <div className="pb-4">
+            <h2 className="font-bold text-xl md:text-2xl text-black dark:text-white mb-2">
+              {newsTitle}
+            </h2>
+            <div className="flex items-center gap-6 text-black/50 dark:text-white/50">
+              <div className="flex items-center gap-1 text-sm leading-[130%]">
+                <CalendarDays className="w-4 h-4" />
+                {formatDate(news1.createdAt)}
+              </div>
+              <div className="flex items-center gap-1 text-sm leading-[130%]">
+                <Eye className="w-4 h-4" />
+                {news1.views}
+              </div>
+            </div>
+          </div>
           <div
             dangerouslySetInnerHTML={{
               __html: news1?.description?.[currentLang],

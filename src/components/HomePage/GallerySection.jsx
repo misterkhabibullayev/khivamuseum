@@ -1,3 +1,4 @@
+import { Fancybox } from "@fancyapps/ui";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { Icons } from "../../icons/icons";
@@ -8,6 +9,13 @@ export default function GallerySection() {
   const { t } = useTranslation();
 
   const { gallery, getGallery } = useGalleryStore();
+
+  useEffect(() => {
+    Fancybox.bind("[data-fancybox='gallery']", {});
+    return () => {
+      Fancybox.destroy();
+    };
+  }, []);
 
   useEffect(() => {
     getGallery();
@@ -33,11 +41,17 @@ export default function GallerySection() {
               key={item.id}
               className={`rounded-xl overflow-hidden h-75 md:h-auto ${index === 0 ? "col-span-2 row-span-1 sm:row-span-2" : ""} ${index === 1 ? "col-span-2 row-span-1 sm:row-span-1" : ""} ${index === 2 ? "col-span-2 sm:col-span-1 row-span-1 sm:row-span-1" : ""} ${index === 3 ? "col-span-2 sm:col-span-1 row-span-1 sm:row-span-1" : ""}`}
             >
-              <img
-                src={item?.url}
-                alt={`gallery-${item.id}`}
-                className="w-full h-full object-cover"
-              />
+              <a
+                href={item.url}
+                data-fancybox="gallery"
+                className="w-full h-full"
+              >
+                <img
+                  src={item?.url}
+                  alt={`gallery-${item.id}`}
+                  className="w-full h-full object-cover"
+                />
+              </a>
             </div>
           ))}
         </div>

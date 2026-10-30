@@ -1,4 +1,4 @@
-import { Calendar, Check } from "lucide-react";
+import { Calendar } from "lucide-react";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router-dom";
@@ -37,14 +37,14 @@ export default function EmployeesPage() {
           {t("breadCrumbs.employees")}
         </h2>
       </div>
-      <div className="grid grid-cols-2 md:grid-cols-4 xl:grid-cols-5 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {employees.map((item) => (
           <div
             key={item.id}
-            className="p-2 rounded-lg bg-light-main dark:bg-dark-main shadow-lg"
+            className="p-2 rounded-lg bg-linear-to-b from-link-hover/30 to-light-main dark:to-dark-main shadow-sm"
           >
             <div className="w-full flex items-center justify-center py-4">
-              <div className="w-25 h-25 rounded-full overflow-hidden">
+              <div className="w-25 h-25 rounded-full overflow-hidden shadow">
                 <img
                   src={item.images[0].url}
                   alt={item.fullName}
@@ -53,21 +53,18 @@ export default function EmployeesPage() {
               </div>
             </div>
             <div>
-              <h1 className="font-medium text-lg leading-[110%] text-center min-h-10">
+              <h1 className="font-medium text-base leading-[110%] text-center min-w-8.75">
                 {item.fullName}
               </h1>
-              <p className="font-medium text-sm leading-[130%] text-center py-2 min-h-17.5">
-                {item.position[currentLang]}
-              </p>
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-1 text-sm leading-[150%]">
+              <div className="flex items-center justify-center py-2">
+                <div className="flex items-center gap-1 text-sm text-black/50 dark:text-white/50 leading-[150%]">
                   <Calendar className="w-4 h-4" />
                   {formatDate(item.birthDate)}
                 </div>
-                <div>
-                  <Check className="w-4 h-4" />
-                </div>
               </div>
+              <p className="font-medium text-sm leading-[130%] text-center pb-2 min-h-17.5">
+                {item.position[currentLang]}
+              </p>
             </div>
           </div>
         ))}

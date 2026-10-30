@@ -282,7 +282,7 @@ export default function ContactPage() {
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="px-4 py-2 bg-link-hover rounded-lg font-medium text-base"
+                  className="px-4 py-2 bg-link-hover rounded-lg font-medium text-base text-white"
                 >
                   {submitting ? "Yuborilmoqda..." : "Yuborish"}
                 </button>

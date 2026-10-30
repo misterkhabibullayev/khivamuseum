@@ -1,5 +1,5 @@
 import { Fancybox } from "@fancyapps/ui";
-import { Eye } from "lucide-react";
+import { ZoomIn } from "lucide-react";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { useTranslation } from "react-i18next";
@@ -44,26 +44,28 @@ export default function GalleryPage() {
         <div>
           <Breadcrumbs />
         </div>
-        <div className="flex items-center justify-center pb-8">
+        <div className="flex items-center justify-center py-8 md:pt-0">
           <h2 className="font-bold text-3xl md:text-4xl">
             {t("breadCrumbs.gallery")}
           </h2>
         </div>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
           {gallery.map((item) => (
-            <div key={item.id} className="rounded-lg overflow-hidden relative">
+            <div key={item.id} className="rounded-lg overflow-hidden">
               <a
                 href={item.url}
                 data-fancybox="gallery"
-                className="absolute top-1 right-1 p-2 bg-link-hover rounded-lg"
+                className="relative group"
               >
-                <Eye className="w-4 h-4 text-white" />
+                <img
+                  src={item.url}
+                  alt={`gallery-${item.id}`}
+                  className="w-full h-full object-cover aspect-square"
+                />
+                <div className="absolute top-0 left-0 w-full h-full bg-black/50 flex items-center justify-center opacity-0 lg:group-hover:opacity-100 transition-opacity duration-300">
+                  <ZoomIn className="w-7 h-7 text-white" />
+                </div>
               </a>
-              <img
-                src={item.url}
-                alt={`gallery-${item.id}`}
-                className="w-full h-full object-cover aspect-square"
-              />
             </div>
           ))}
         </div>
