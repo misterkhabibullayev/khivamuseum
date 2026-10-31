@@ -12,11 +12,12 @@ import { formatDate } from "../../utils/formatDate";
 import "swiper/css";
 import "swiper/css/navigation";
 
+import { Helmet } from "react-helmet-async";
 import { Navigation } from "swiper/modules";
 import "../../index.css";
 
 export default function NewsDetailesPage() {
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const currentLang = i18n.language || "uz";
   const { newsDetails } = useParams();
   const { setDynamicName } = useBreadcrumbStore();
@@ -42,6 +43,10 @@ export default function NewsDetailesPage() {
   if (!news1) return null;
   return (
     <div>
+      <Helmet>
+        <title>{newsTitle}</title>
+        <meta name="description" content={t("meta.newsDes")} />
+      </Helmet>
       <div className="container1">
         <Breadcrumbs />
       </div>

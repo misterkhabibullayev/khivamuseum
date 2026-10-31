@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { Helmet } from "react-helmet-async";
 import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
 import Breadcrumbs from "../../components/BreadCrumbs";
@@ -7,7 +8,7 @@ import { useBreadcrumbStore } from "../../store/useBreadCrumStore";
 import { useCollectionsSt } from "../../store/useCollectionsSt";
 
 export default function CollectionsDetPage() {
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const currentLang = i18n.language || "uz";
   const { coldetailes } = useParams();
   const { setDynamicName } = useBreadcrumbStore();
@@ -34,6 +35,10 @@ export default function CollectionsDetPage() {
   if (!collection) return null;
   return (
     <div>
+      <Helmet>
+        <title>{collectionTitle}</title>
+        <meta name="description" content={t("meta.collectionsDes")} />
+      </Helmet>
       <div className="container1">
         <Breadcrumbs />
       </div>

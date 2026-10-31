@@ -5,6 +5,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import Breadcrumbs from "../../components/BreadCrumbs";
 import Loading from "../../components/Loading";
 import { useTicketsStore } from "../../store/useTicketsStore";
+import { Helmet } from "react-helmet-async";
 
 export default function TicketsPage() {
   const { t, i18n } = useTranslation();
@@ -111,6 +112,10 @@ export default function TicketsPage() {
 
   return (
     <>
+      <Helmet>
+        <title>{t("meta.tickets")}</title>
+        <meta name="description" content={t("meta.ticketsDes")} />
+      </Helmet>
       <div className="container1">
         <Breadcrumbs />
         <div>

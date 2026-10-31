@@ -9,9 +9,10 @@ import Loading from "../../components/Loading";
 import { useAnnouncementsStore } from "../../store/useAnnouncementsStore";
 import { useBreadcrumbStore } from "../../store/useBreadCrumStore";
 import { formatDate } from "../../utils/formatDate";
+import { Helmet } from "react-helmet-async";
 
 export default function NewsDetailesPage() {
-  const { i18n } = useTranslation();
+  const { t,i18n } = useTranslation();
   const currentLang = i18n.language || "uz";
   const { announDet } = useParams();
   const { setDynamicName } = useBreadcrumbStore();
@@ -38,6 +39,10 @@ export default function NewsDetailesPage() {
   if (!announcement) return null;
   return (
     <div>
+      <Helmet>
+        <title>{announcTitle}</title>
+        <meta name="description" content={t("meta.announcementsDes")} />
+      </Helmet>
       <div className="container1">
         <Breadcrumbs />
       </div>

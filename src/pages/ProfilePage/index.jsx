@@ -26,6 +26,7 @@ import Breadcrumbs from "../../components/BreadCrumbs";
 import Loading from "../../components/Loading";
 import { useProfileStore } from "../../store/useProfileStore";
 import { formatDate } from "../../utils/formatDate";
+import { Helmet } from "react-helmet-async";
 
 export default function ProfilePage() {
   const {
@@ -209,6 +210,10 @@ export default function ProfilePage() {
 
   return (
     <>
+      <Helmet>
+        <title>{t("meta.profil")}</title>
+        <meta name="description" content={t("meta.profilDes")} />
+      </Helmet>
       <div className="">
         {statusMessage && (
           <div
@@ -275,7 +280,11 @@ export default function ProfilePage() {
               <div className="relative">
                 <div className="w-20 h-20 rounded-full overflow-hidden bg-link-hover border-2 border-link-hover flex items-center justify-center font-bold text-3xl text-white">
                   {profile?.images?.length ? (
-                    <a href={profile.images[0].url} data-fancybox="gallery" className="w-full h-full relative flex group">
+                    <a
+                      href={profile.images[0].url}
+                      data-fancybox="gallery"
+                      className="w-full h-full relative flex group"
+                    >
                       <img
                         src={profile.images[0].url}
                         alt="profile"
@@ -436,7 +445,7 @@ export default function ProfilePage() {
               >
                 <form
                   onSubmit={handleSubmitName(onUpdateName)}
-                  className="p-4 w-full border-b border-link-hover"
+                  className="p-4 w-full"
                 >
                   <h3 className="font-medium text-base mb-2 flex items-center gap-2">
                     <User className="w-5 h-5 text-link-hover" />{" "}
@@ -455,7 +464,7 @@ export default function ProfilePage() {
                     </div>
                     <div>
                       <label className="text-xs text-black dark:text-white block pb-1.5">
-                        {t("prfoile.lastName")}
+                        {t("profile.lastName")}
                       </label>
                       <input
                         type="text"
@@ -477,7 +486,7 @@ export default function ProfilePage() {
 
                 <form
                   onSubmit={handleSubmitEmail(onEmailSubmit)}
-                  className="p-4 border-b border-link-hover"
+                  className="p-4"
                 >
                   <h3 className="font-medium text-base mb-4 flex items-center gap-2">
                     <Mail className="w-5 h-5 text-link-hover" />{" "}

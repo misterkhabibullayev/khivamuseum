@@ -64,7 +64,7 @@ export default function Header() {
     <>
       <header
         ref={headerTopRef}
-        className={`top-0 left-0 z-1000 w-full transition-all duration-300 ${isHomePage ? `fixed ${isSticky ? "bg-white dark:bg-dark-main text-black dark:text-white" : "bg-white/10 backdrop-blur-xs text-white"}` : "sticky bg-white dark:bg-dark-main text-black dark:text-white"}`}
+        className={`top-0 left-0 z-1000 w-full transition-all duration-300 ${isHomePage ? `fixed ${isSticky ? "bg-white dark:bg-dark-main text-black dark:text-white" : "bg-white/10 backdrop-blur-xl text-white"}` : "sticky bg-white dark:bg-dark-main text-black dark:text-white"}`}
       >
         <div className="container1 py-3 lg:py-0">
           <div className="flex items-center justify-between py-1 text-base">

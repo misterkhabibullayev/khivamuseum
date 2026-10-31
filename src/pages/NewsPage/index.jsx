@@ -33,8 +33,8 @@ export default function NewsPage() {
   return (
     <div>
       <Helmet>
-        <title>{t("meta.gallery")}</title>
-        <meta name="description" content={t("meta.galleryDes")} />
+        <title>{t("meta.news")}</title>
+        <meta name="description" content={t("meta.newsDes")} />
       </Helmet>
       <div className="container1">
         <div>

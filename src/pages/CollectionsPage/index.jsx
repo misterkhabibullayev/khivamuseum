@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { Helmet } from "react-helmet-async";
 import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router-dom";
 import Breadcrumbs from "../../components/BreadCrumbs";
@@ -30,6 +31,10 @@ export default function CollectionsPage() {
   if (error) return <p>{error}</p>;
   return (
     <div>
+      <Helmet>
+        <title>{t("meta.collections")}</title>
+        <meta name="description" content={t("meta.collectionsDes")} />
+      </Helmet>
       <div className="container1">
         <Breadcrumbs />
       </div>
